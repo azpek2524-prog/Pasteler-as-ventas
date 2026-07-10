@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Costos Delizi Bake's</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #333; }
+        h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; color: #929D7C; }
+        .btn-primary { background-color: #929D7C; color: white; transition: all 0.2s; }
+        .btn-primary:hover { background-color: #7A8565; transform: translateY(-1px); }
+        .btn-secondary { background-color: #E2E8F0; color: #475569; transition: all 0.2s; }
+        .btn-secondary:hover { background-color: #CBD5E1; }
+        .input-field { width: 100%; padding: 0.5rem; border: 1px solid #CBD5E1; border-radius: 0.375rem; transition: border-color 0.2s; }
+        .input-field:focus { outline: none; border-color: #929D7C; box-shadow: 0 0 0 2px rgba(146, 157, 124, 0.2); }
+        .tab-active { border-bottom: 3px solid #929D7C; color: #929D7C; font-weight: 600; }
+        .category-header { cursor: pointer; user-select: none; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-3 sticky top-0 z-20">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full border-2 border-[#929D7C] flex items-center justify-center text-[#929D7C] font-bold text-lg brand-font">DB</div>
+                <h1 class="text-xl md:text-2xl font-bold tracking-wider hidden sm:block">DELIZI BAKE'S</h1>
+            </div>
+            <nav class="flex gap-2 md:gap-6 text-sm md:text-base">
+                <button id="tab-cotizador" class="pb-1 px-2 tab-active" onclick="switchTab('cotizador')">
+                    <i data-lucide="calculator" class="inline w-4 h-4 mr-1"></i>Cotizar Pastel
+                </button>
+                <button id="tab-inventario" class="pb-1 px-2 text-gray-500 hover:text-[#929D7C]" onclick="switchTab('inventario')">
+                    <i data-lucide="shopping-bag" class="inline w-4 h-4 mr-1"></i>Mis Precios/Compras
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-2 md:px-4 py-6">
+        
+        <!-- SECCIÓN: COTIZADOR (Cálculo por pastel) -->
+        <section id="section-cotizador" class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6">
+            
+            <!-- Columna Izquierda: Formulario de Uso -->
+            <div class="w-full lg:w-2/3 bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-6">
+                <h2 class="text-2xl mb-2">Costeo del Pastel</h2>
+                <p class="text-sm text-gray-500 mb-6">Anota las cantidades exactas que usarás para este pedido.</p>
+
+                <!-- Datos para el cliente (No afectan costo matemático, pero arman el ticket) -->
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-6 space-y-4">
+                    <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">1. Datos del Pedido (Para el ticket)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-500 mb-2">Tamaño / Porciones</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="tamano-buttons">
+                                <button type="button" onclick="seleccionarTamano('Petit (8-10 px)', this)" class="btn-tamano border border-gray-300 rounded p-2 text-sm hover:bg-gray-50 text-gray-700 transition-colors">Petit <br><span class="text-xs text-gray-500 transition-colors">8-10 px</span></button>
+                                <button type="button" onclick="seleccionarTamano('Chico (12-14 px)', this)" class="btn-tamano border border-gray-300 rounded p-2 text-sm hover:bg-gray-50 text-gray-700 transition-colors">Chico <br><span class="text-xs text-gray-500 transition-colors">12-14 px</span></button>
+                                <button type="button" onclick="seleccionarTamano('Mediano (15-20 px)', this)" class="btn-tamano border border-gray-300 rounded p-2 text-sm hover:bg-gray-50 text-gray-700 transition-colors">Mediano <br><span class="text-xs text-gray-500 transition-colors">15-20 px</span></button>
+                                <button type="button" onclick="seleccionarTamano('Grande (25-30 px)', this)" class="btn-tamano border border-gray-300 rounded p-2 text-sm hover:bg-gray-50 text-gray-700 transition-colors">Grande <br><span class="text-xs text-gray-500 transition-colors">25-30 px</span></button>
+                                <button type="button" onclick="seleccionarTamano('Extra Grande (35-40 px)', this)" class="btn-tamano border border-gray-300 rounded p-2 text-sm hover:bg-gray-50 text-gray-700 transition-colors">Extra Grande <br><span class="text-xs text-gray-500 transition-colors">35-40 px</span></button>
+                                <button type="button" onclick="seleccionarTamano('Bento (1-2 px)', this)" class="btn-tamano border border-gray-300 rounded p-2 text-sm hover:bg-gray-50 text-gray-700 transition-colors">Bento <br><span class="text-xs text-gray-500 transition-colors">1-2 px</span></button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1">Sabor del Pan</label>
+                            <input type="text" id="info-pan" class="input-field bg-white" placeholder="Ej. Vainilla con chispas">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1">Relleno(s)</label>
+                            <input type="text" id="info-relleno" class="input-field bg-white" placeholder="Ej. Nutella y Fresa">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-500 mb-1">Diseño / Notas (Decoración)</label>
+                            <textarea id="info-notas" rows="2" class="input-field bg-white" placeholder="Temática, colores, no fondant..."></textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-500 mb-1">Imagen de Referencia (Diseño)</label>
+                            <input type="file" id="foto-diseno" accept="image/*" onchange="mostrarVistaPrevia(event)" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#929D7C]/10 file:text-[#929D7C] hover:file:bg-[#929D7C]/20">
+                            <div id="preview-container" class="hidden mt-3 relative inline-block">
+                                <img id="img-preview" src="" alt="Vista previa" class="max-h-48 rounded-lg border border-gray-200 object-contain">
+                                <button type="button" onclick="removerImagen()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow hover:bg-red-600"><i data-lucide="x" class="w-3 h-3"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">2. Ingredientes y Cantidades Usadas</h3>
+                <div id="costeo-categorias-container" class="space-y-3">
+                    <!-- Las categorías (Pan, Betún, etc) se inyectan aquí con JS -->
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Resumen Financiero -->
+            <div class="w-full lg:w-1/3">
+                <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 sticky top-24">
+                    <h2 class="text-xl mb-4 border-b pb-2">Resumen Financiero</h2>
+                    
+                    <div class="space-y-3 text-sm mb-6">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Costo Materiales:</span>
+                            <span id="res-mat">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Costos Operativos/Fijos:</span>
+                            <span id="res-op">$0.00</span>
+                        </div>
+                        <div class="flex justify-between font-semibold text-gray-800 border-t pt-2 border-gray-100">
+                            <span>COSTO TOTAL (Lo que inviertes):</span>
+                            <span id="res-costo-total">$0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-100 mb-6">
+                        <label class="block text-sm font-semibold text-[#929D7C] mb-2">Margen de Ganancia (%)</label>
+                        <div class="flex items-center gap-2 mb-2">
+                            <input type="range" id="input-margen" min="0" max="200" value="50" class="w-full accent-[#929D7C]">
+                            <span id="label-margen" class="font-bold text-[#929D7C] w-12 text-right">50%</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-3">Sugerencia: 30% a 50% extra sobre el costo, o más según la decoración.</p>
+                        
+                        <div class="flex justify-between items-end mt-4">
+                            <span class="text-gray-700 font-semibold text-sm">Precio Sugerido:</span>
+                            <span class="text-3xl font-bold text-[#929D7C]" id="res-precio-venta">$0.00</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-xs text-gray-500">Tu ganancia libre:</span>
+                            <span class="text-sm font-semibold text-green-600" id="res-ganancia-libre">$0.00</span>
+                        </div>
+                    </div>
+
+                    <button onclick="copiarTicketCliente()" class="w-full btn-primary py-3 rounded-lg font-semibold flex items-center justify-center gap-2 mb-3">
+                        <i data-lucide="send" class="w-5 h-5"></i> Copiar Ticket (Sin Precios Internos)
+                    </button>
+                    <button onclick="limpiarCotizador()" class="w-full text-sm text-gray-500 hover:text-red-500 transition-colors py-2 flex items-center justify-center gap-1">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i> Limpiar todo para nuevo pastel
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: INVENTARIO (Configuración de precios) -->
+        <section id="section-inventario" class="hidden max-w-5xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <div>
+                    <h2 class="text-2xl">Mis Precios / Compras</h2>
+                    <p class="text-sm text-gray-500 mt-1">Configura cuánto te cuesta comprar tus insumos. El cotizador usará esto para calcular gramos/piezas.</p>
+                </div>
+                <button onclick="guardarInventario()" class="btn-primary px-5 py-2 rounded-lg flex items-center gap-2 whitespace-nowrap">
+                    <i data-lucide="save" class="w-4 h-4"></i> Guardar Inventario
+                </button>
+            </div>
+
+            <div id="inventario-container" class="space-y-8">
+                <!-- Tablas de inventario se inyectan aquí -->
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- DATOS INICIALES (Con la información proporcionada por el usuario) ---
+        const DEFAULT_DB = {
+            pan: [
+                { id: 'p1', nombre: 'Harina', qty: 1000, unidad: 'g', precio: 60 },
+                { id: 'p2', nombre: 'Huevos', qty: 6, unidad: 'pzas', precio: 25 },
+                { id: 'p3', nombre: 'Mantequilla', qty: 90, unidad: 'g', precio: 10 },
+                { id: 'p4', nombre: 'Agua', qty: 600, unidad: 'ml', precio: 5 }
+            ],
+            betun: [
+                { id: 'b1', nombre: 'Manteca', qty: 500, unidad: 'g', precio: 30 },
+                { id: 'b2', nombre: 'Mantequilla', qty: 250, unidad: 'g', precio: 30 },
+                { id: 'b3', nombre: 'Vainilla', qty: 45, unidad: 'g', precio: 5 },
+                { id: 'b4', nombre: 'Azúcar Glass', qty: 1000, unidad: 'g', precio: 50 }
+            ],
+            relleno: [
+                { id: 'r1', nombre: 'Nutella', qty: 50, unidad: 'g', precio: 60 },
+                { id: 'r2', nombre: 'Mermelada de Fresa', qty: 500, unidad: 'g', precio: 45 },
+                { id: 'r3', nombre: 'Cajeta', qty: 500, unidad: 'g', precio: 55 },
+                { id: 'r4', nombre: 'Nuez', qty: 100, unidad: 'g', precio: 40 },
+                { id: 'r5', nombre: 'Queso Philadelphia', qty: 190, unidad: 'g', precio: 45 }
+            ],
+            decoracion: [
+                { id: 'd1', nombre: 'Perlas Blancas', qty: 1, unidad: 'paquete', precio: 10 },
+                { id: 'd2', nombre: 'Flores Falsas', qty: 1, unidad: 'paquete', precio: 40 },
+                { id: 'd3', nombre: 'Topper', qty: 1, unidad: 'pza', precio: 40 },
+                { id: 'd4', nombre: 'Base', qty: 1, unidad: 'pza', precio: 30 },
+                { id: 'd5', nombre: 'Caja', qty: 1, unidad: 'pza', precio: 40 }
+            ],
+            operativos: [
+                { id: 'o1', nombre: 'Horno (Gas/Electricidad por uso)', qty: 1, unidad: 'uso', precio: 10 },
+                { id: 'o2', nombre: 'Luz', qty: 1, unidad: 'uso', precio: 10 },
+                { id: 'o3', nombre: 'Tiempo / Mano de Obra', qty: 1, unidad: 'pastel', precio: 300 }
+            ]
+        };
+
+        const CATEGORY_NAMES = {
+            pan: 'Pan (Masa)',
+            betun: 'Betún / Cobertura',
+            relleno: 'Rellenos',
+            decoracion: 'Decoración y Empaque',
+            operativos: 'Costos Fijos / Operativos'
+        };
+
+        // Estado de la app
+        let db = {};
+        let cantidadesUsadas = {}; // Guarda { id_item: cantidad_usada_numero }
+        let tamanoSeleccionado = '';
+        let imagenAdjunta = false;
+
+        // --- INICIALIZACIÓN ---
+        function initApp() {
+            lucide.createIcons();
+            cargarDatos();
+            renderizarInventario();
+            renderizarCotizador();
+            setupEvents();
+            calcularTotales();
+        }
+
+        function cargarDatos() {
+            const saved = localStorage.getItem('deliziCostosV2');
+            if (saved) {
+                db = JSON.parse(saved);
+                // Simple migración por si agregamos categorías en el futuro
+                for (const cat in DEFAULT_DB) {
+                    if (!db[cat]) db[cat] = [...DEFAULT_DB[cat]];
+                }
+            } else {
+                db = JSON.parse(JSON.stringify(DEFAULT_DB));
+            }
+        }
+
+        // --- UI: PESTAÑAS ---
+        function switchTab(tabId) {
+            const tabs = {
+                cotizador: { btn: 'tab-cotizador', sec: 'section-cotizador' },
+                inventario: { btn: 'tab-inventario', sec: 'section-inventario' }
+            };
+
+            for (const key in tabs) {
+                document.getElementById(tabs[key].btn).classList.remove('tab-active');
+                document.getElementById(tabs[key].btn).classList.add('text-gray-500');
+                document.getElementById(tabs[key].sec).classList.add('hidden');
+            }
+
+            document.getElementById(tabs[tabId].btn).classList.add('tab-active');
+            document.getElementById(tabs[tabId].btn).classList.remove('text-gray-500');
+            document.getElementById(tabs[tabId].sec).classList.remove('hidden');
+
+            if (tabId === 'cotizador') {
+                renderizarCotizador(); // Refrescar por si cambiaron precios
+                calcularTotales();
+            }
+        }
+
+        // --- RENDERIZAR INVENTARIO (TAB 2) ---
+        function renderizarInventario() {
+            const container = document.getElementById('inventario-container');
+            container.innerHTML = '';
+
+            for (const cat in db) {
+                const itemsHTML = db[cat].map((item, idx) => `
+                    <div class="grid grid-cols-12 gap-2 mb-2 items-center text-sm" id="inv-row-${item.id}">
+                        <div class="col-span-12 sm:col-span-4">
+                            <input type="text" value="${item.nombre}" class="input-field py-1" onchange="updateInvItem('${cat}', ${idx}, 'nombre', this.value)" placeholder="Nombre del insumo">
+                        </div>
+                        <div class="col-span-4 sm:col-span-2">
+                            <input type="number" value="${item.qty}" class="input-field py-1 text-center" onchange="updateInvItem('${cat}', ${idx}, 'qty', this.value)">
+                        </div>
+                        <div class="col-span-4 sm:col-span-2">
+                            <input type="text" value="${item.unidad}" class="input-field py-1 text-center" onchange="updateInvItem('${cat}', ${idx}, 'unidad', this.value)" placeholder="g, ml, pza">
+                        </div>
+                        <div class="col-span-3 sm:col-span-3 relative">
+                            <span class="absolute left-2 top-1.5 text-gray-500">$</span>
+                            <input type="number" value="${item.precio}" class="input-field py-1 pl-6" onchange="updateInvItem('${cat}', ${idx}, 'precio', this.value)">
+                        </div>
+                        <div class="col-span-1 flex justify-center">
+                            <button onclick="eliminarItemInv('${cat}', ${idx})" class="text-red-400 hover:text-red-600" title="Eliminar"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+
+                const section = `
+                    <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                        <div class="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
+                            <h3 class="text-lg font-semibold text-[#929D7C] flex items-center gap-2"><i data-lucide="package" class="w-5 h-5"></i> ${CATEGORY_NAMES[cat]}</h3>
+                            <button onclick="agregarItemInv('${cat}')" class="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"><i data-lucide="plus" class="w-4 h-4"></i> Añadir Insumo</button>
+                        </div>
+                        <div class="hidden sm:grid grid-cols-12 gap-2 mb-2 text-xs font-semibold text-gray-500 uppercase px-1">
+                            <div class="col-span-4">Nombre (Ej. Harina)</div>
+                            <div class="col-span-2 text-center">Cantidad</div>
+                            <div class="col-span-2 text-center">Unidad</div>
+                            <div class="col-span-3">Cuesta</div>
+                            <div class="col-span-1"></div>
+                        </div>
+                        ${itemsHTML}
+                    </div>
+                `;
+                container.innerHTML += section;
+            }
+            lucide.createIcons();
+        }
+
+        // --- FUNCIONES INVENTARIO ---
+        function updateInvItem(cat, idx, field, value) {
+            if (field === 'qty' || field === 'precio') {
+                db[cat][idx][field] = parseFloat(value) || 0;
+            } else {
+                db[cat][idx][field] = value;
+            }
+        }
+
+        function agregarItemInv(cat) {
+            const newId = cat.charAt(0) + Date.now();
+            db[cat].push({ id: newId, nombre: '', qty: 1, unidad: 'pza', precio: 0 });
+            renderizarInventario();
+        }
+
+        function eliminarItemInv(cat, idx) {
+            if(confirm('¿Seguro que deseas eliminar este insumo?')) {
+                db[cat].splice(idx, 1);
+                renderizarInventario();
+            }
+        }
+
+        function guardarInventario() {
+            localStorage.setItem('deliziCostosV2', JSON.stringify(db));
+            
+            const btn = event.currentTarget;
+            const original = btn.innerHTML;
+            btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> ¡Guardado!`;
+            btn.classList.add('bg-green-600');
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.classList.remove('bg-green-600');
+                lucide.createIcons();
+            }, 2000);
+            
+            renderizarCotizador(); // Actualizar cotizador con los nuevos precios/items
+            calcularTotales();
+        }
+
+        // --- RENDERIZAR COTIZADOR (TAB 1) ---
+        function renderizarCotizador() {
+            const container = document.getElementById('costeo-categorias-container');
+            container.innerHTML = '';
+
+            for (const cat in db) {
+                // Calcular costo unitario para mostrarlo (ej. $0.06 / g)
+                const itemsHTML = db[cat].map(item => {
+                    const costoUnitario = item.qty > 0 ? (item.precio / item.qty) : 0;
+                    const valUsado = cantidadesUsadas[item.id] || '';
+                    const costoItem = valUsado ? (valUsado * costoUnitario) : 0;
+                    
+                    return `
+                    <div class="flex items-center justify-between py-2 border-b border-gray-50 last:border-0 hover:bg-gray-50 px-2 rounded transition-colors group">
+                        <div class="w-1/2">
+                            <span class="block text-sm text-gray-700">${item.nombre}</span>
+                            <span class="text-[10px] text-gray-400">Comprado: ${item.qty}${item.unidad} x $${item.precio} ($${costoUnitario.toFixed(2)}/${item.unidad})</span>
+                        </div>
+                        <div class="w-1/4 flex items-center justify-end gap-1">
+                            <input type="number" 
+                                   class="input-field w-20 py-1 text-center text-sm border-gray-300 ${valUsado ? 'bg-green-50 border-green-300' : ''}" 
+                                   placeholder="0" 
+                                   value="${valUsado}"
+                                   oninput="actualizarUso('${item.id}', this.value)">
+                            <span class="text-xs text-gray-500 w-8">${item.unidad}</span>
+                        </div>
+                        <div class="w-1/4 text-right">
+                            <span class="text-sm font-semibold text-[#929D7C] costo-item-display" id="costo-calc-${item.id}">
+                                ${costoItem > 0 ? '$'+costoItem.toFixed(2) : '-'}
+                            </span>
+                        </div>
+                    </div>
+                `}).join('');
+
+                // Acordeones abiertos por defecto
+                const section = `
+                    <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
+                        <div class="bg-gray-50 px-4 py-3 border-b border-gray-200 flex justify-between items-center category-header" onclick="toggleAcc('${cat}')">
+                            <span class="font-semibold text-gray-700 text-sm flex items-center gap-2"><i data-lucide="chevron-down" class="w-4 h-4 text-gray-400" id="icon-acc-${cat}"></i> ${CATEGORY_NAMES[cat]}</span>
+                            <span class="text-xs font-bold text-gray-500" id="subtotal-cat-${cat}">$0.00</span>
+                        </div>
+                        <div class="px-2 py-1 transition-all" id="body-acc-${cat}">
+                            ${itemsHTML}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += section;
+            }
+            lucide.createIcons();
+            actualizarSubtotalesVisuales();
+        }
+
+        // --- LÓGICA DEL COTIZADOR ---
+        function toggleAcc(cat) {
+            const body = document.getElementById(`body-acc-${cat}`);
+            const icon = document.getElementById(`icon-acc-${cat}`);
+            if (body.classList.contains('hidden')) {
+                body.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'chevron-down');
+            } else {
+                body.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'chevron-right');
+            }
+            lucide.createIcons();
+        }
+
+        function actualizarUso(itemId, value) {
+            const val = parseFloat(value);
+            if (isNaN(val) || val <= 0) {
+                delete cantidadesUsadas[itemId];
+            } else {
+                cantidadesUsadas[itemId] = val;
+            }
+            
+            // Actualizar visual de esa fila rápido
+            const input = event.target;
+            if(val > 0) {
+                input.classList.add('bg-green-50', 'border-green-300');
+            } else {
+                input.classList.remove('bg-green-50', 'border-green-300');
+            }
+
+            calcularTotales();
+            actualizarSubtotalesVisuales();
+        }
+
+        function calcularTotales() {
+            let costoMateriales = 0;
+            let costoOperativos = 0;
+
+            for (const cat in db) {
+                db[cat].forEach(item => {
+                    const usado = cantidadesUsadas[item.id];
+                    if (usado) {
+                        const costo = (usado / item.qty) * item.precio;
+                        if (cat === 'operativos') {
+                            costoOperativos += costo;
+                        } else {
+                            costoMateriales += costo;
+                        }
+                        
+                        // Actualizar display individual
+                        const display = document.getElementById(`costo-calc-${item.id}`);
+                        if(display) display.innerText = '$' + costo.toFixed(2);
+                    } else {
+                        const display = document.getElementById(`costo-calc-${item.id}`);
+                        if(display) display.innerText = '-';
+                    }
+                });
+            }
+
+            const costoTotal = costoMateriales + costoOperativos;
+            
+            // Margen
+            const margenVal = document.getElementById('input-margen').value;
+            const factor = 1 + (margenVal / 100);
+            const precioVenta = costoTotal * factor;
+            const gananciaLibre = precioVenta - costoTotal;
+
+            // Actualizar UI
+            document.getElementById('res-mat').innerText = '$' + costoMateriales.toFixed(2);
+            document.getElementById('res-op').innerText = '$' + costoOperativos.toFixed(2);
+            document.getElementById('res-costo-total').innerText = '$' + costoTotal.toFixed(2);
+            document.getElementById('res-precio-venta').innerText = '$' + precioVenta.toFixed(2);
+            document.getElementById('res-ganancia-libre').innerText = '+$' + gananciaLibre.toFixed(2);
+        }
+
+        function actualizarSubtotalesVisuales() {
+            for (const cat in db) {
+                let sub = 0;
+                db[cat].forEach(item => {
+                    const usado = cantidadesUsadas[item.id];
+                    if(usado) sub += (usado / item.qty) * item.precio;
+                });
+                const el = document.getElementById(`subtotal-cat-${cat}`);
+                if(el) el.innerText = '$' + sub.toFixed(2);
+            }
+        }
+
+        function setupEvents() {
+            const margenInput = document.getElementById('input-margen');
+            margenInput.addEventListener('input', (e) => {
+                document.getElementById('label-margen').innerText = e.target.value + '%';
+                calcularTotales();
+            });
+        }
+
+        function limpiarCotizador() {
+            if(!confirm('¿Limpiar todas las cantidades y datos del cliente?')) return;
+            cantidadesUsadas = {};
+            tamanoSeleccionado = '';
+            
+            // Limpiar botones de tamaño
+            document.querySelectorAll('.btn-tamano').forEach(b => {
+                b.classList.remove('bg-[#929D7C]', 'text-white', 'border-[#929D7C]');
+                b.classList.add('hover:bg-gray-50', 'text-gray-700');
+                b.querySelector('span').classList.remove('text-white');
+                b.querySelector('span').classList.add('text-gray-500');
+            });
+
+            // Limpiar imagen
+            removerImagen();
+
+            document.getElementById('info-pan').value = '';
+            document.getElementById('info-relleno').value = '';
+            document.getElementById('info-notas').value = '';
+            renderizarCotizador();
+            calcularTotales();
+        }
+
+        // --- FUNCIONES NUEVAS UI ---
+        function seleccionarTamano(tamano, btn) {
+            tamanoSeleccionado = tamano;
+            // Reset styles
+            document.querySelectorAll('.btn-tamano').forEach(b => {
+                b.classList.remove('bg-[#929D7C]', 'text-white', 'border-[#929D7C]');
+                b.classList.add('hover:bg-gray-50', 'text-gray-700');
+                b.querySelector('span').classList.remove('text-white');
+                b.querySelector('span').classList.add('text-gray-500');
+            });
+            // Apply active styles
+            btn.classList.add('bg-[#929D7C]', 'text-white', 'border-[#929D7C]');
+            btn.classList.remove('hover:bg-gray-50', 'text-gray-700');
+            btn.querySelector('span').classList.remove('text-gray-500');
+            btn.querySelector('span').classList.add('text-white');
+        }
+
+        function mostrarVistaPrevia(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('img-preview').src = e.target.result;
+                    document.getElementById('preview-container').classList.remove('hidden');
+                    imagenAdjunta = true;
+                    lucide.createIcons();
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removerImagen() {
+            document.getElementById('foto-diseno').value = '';
+            document.getElementById('preview-container').classList.add('hidden');
+            document.getElementById('img-preview').src = '';
+            imagenAdjunta = false;
+        }
+
+        // --- COPIAR TICKET ---
+        function copiarTicketCliente() {
+            const tamano = tamanoSeleccionado || 'No especificado';
+            const pan = document.getElementById('info-pan').value.trim() || 'No especificado';
+            const relleno = document.getElementById('info-relleno').value.trim() || 'No especificado';
+            const notas = document.getElementById('info-notas').value.trim();
+            const precioVenta = document.getElementById('res-precio-venta').innerText;
+
+            if(precioVenta === '$0.00') {
+                alert('Añade al menos un ingrediente o costo operativo para generar el ticket.');
+                return;
+            }
+
+            let texto = `*COTIZACIÓN DELIZI BAKE'S* 🎂\n\n`;
+            texto += `*Tamaño:* ${tamano}\n`;
+            texto += `*Sabor de Pan:* ${pan}\n`;
+            texto += `*Relleno:* ${relleno}\n`;
+            
+            if(notas) {
+                texto += `\n*Detalles / Decoración:*\n_${notas}_\n`;
+            }
+
+            if(imagenAdjunta) {
+                texto += `\n*(Se adjuntó imagen de referencia para el diseño)*\n`;
+            }
+
+            texto += `\n-----------------------\n`;
+            texto += `*TOTAL: ${precioVenta}*\n`;
+            texto += `-----------------------\n`;
+            texto += `_Nota: Las figuras en fondant no se manejan sin excepción._`;
+
+            // Copiar
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(texto).then(mostrarMensajeCopiado);
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = texto;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    mostrarMensajeCopiado();
+                } catch (err) {
+                    alert("Error al copiar. Texto:\n\n" + texto);
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function mostrarMensajeCopiado() {
+            const btn = document.querySelector('button[onclick="copiarTicketCliente()"]');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i> ¡Copiado con éxito!`;
+            btn.classList.replace('bg-[#929D7C]', 'bg-green-600');
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.replace('bg-green-600', 'bg-[#929D7C]');
+                lucide.createIcons();
+            }, 3000);
+        }
+
+        // Arrancar app
+        window.onload = initApp;
+
+    </script>
+</body>
+</html>
