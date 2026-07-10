@@ -336,6 +336,19 @@
         .toggle-chip.is-active { background: var(--sage); border-color: var(--sage-700); color: #fff; box-shadow: var(--shadow-sm); }
         .toggle-chip.toggle-warn.is-active { background: var(--danger); border-color: var(--danger); }
 
+        /* ---------- Recetas y extras ---------- */
+        .recipe-box { background: linear-gradient(150deg, var(--sage-050), #fff); border: 1.5px solid var(--sage-100); border-radius: var(--radius-sm); padding: 14px; }
+        .select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23929D7C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 38px; cursor: pointer; font-weight: 600; }
+        .field-hint { font-size: 11.5px; color: var(--ink-faint); margin-top: 6px; line-height: 1.4; }
+        .label-hint { font-weight: 400; color: var(--ink-faint); font-size: 11px; text-transform: none; letter-spacing: 0; }
+        .extra-chip .xp { font-weight: 700; margin-left: 5px; opacity: .75; font-size: 12px; }
+        .extra-chip.is-active .xp { opacity: 1; }
+        .recipe-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 4px; border-bottom: 1px solid var(--line); }
+        .recipe-row:last-child { border-bottom: 0; }
+        .recipe-row .rname { font-weight: 600; font-size: 14px; color: var(--ink); }
+        .recipe-row .rmeta { font-size: 11.5px; color: var(--ink-faint); margin-top: 1px; }
+        .empty-hint { font-size: 12.5px; color: var(--ink-faint); padding: 10px 4px; }
+
         .client-note { font-size: 11.5px; color: var(--ink-faint); margin: 16px 0 10px; line-height: 1.4; border-top: 1px dashed var(--line-strong); padding-top: 14px; }
         .mini-link { border: 0; background: transparent; color: var(--sage-700); font-size: 11px; font-weight: 600; cursor: pointer; padding: 1px 4px; border-radius: 6px; text-decoration: underline; }
         .mini-link:hover { background: var(--sage-050); }
@@ -541,7 +554,15 @@
                         <div class="subcard" style="margin-top:16px;">
                             <div class="step-label"><span class="step-num">2</span> Detalles del pastel</div>
 
-                            <div class="field">
+                            <div class="field recipe-box">
+                                <label class="field-label">Receta base · cotización exprés</label>
+                                <select id="receta-select" class="input select" onchange="seleccionarReceta(this.value)">
+                                    <option value="">— Cotización libre (sin receta) —</option>
+                                </select>
+                                <p class="field-hint">Elige una receta y un tamaño: sabores, ingredientes y precio se llenan solos.</p>
+                            </div>
+
+                            <div class="field" style="margin-top:14px;">
                                 <label class="field-label">Tamaño / Porciones</label>
                                 <div class="size-grid" id="tamano-buttons">
                                     <button type="button" class="size-chip" onclick="seleccionarTamano('Petit (8-10 px)', this)"><span class="sc-name">Petit</span><span class="sc-portions">8-10 porciones</span></button>
@@ -577,6 +598,10 @@
                                     <input type="text" id="info-cobertura" class="input" placeholder="Ej. Buttercream, fondant, chantilly...">
                                 </div>
                                 <div class="field col-span-2" style="margin-bottom:0;">
+                                    <label class="field-label">Extras de diseño <span class="label-hint">(se suman al precio final)</span></label>
+                                    <div class="toggle-row" id="extras-chips"></div>
+                                </div>
+                                <div class="field col-span-2" style="margin-bottom:0;">
                                     <label class="field-label">Detalles del pedido / Diseño</label>
                                     <textarea id="info-notas" rows="2" class="textarea" placeholder="Temática, colores, decoración..."></textarea>
                                 </div>
@@ -603,8 +628,11 @@
                             </div>
                         </div>
 
-                        <div class="step-label" style="margin-top:24px;"><span class="step-num">3</span> Ingredientes y cantidades usadas</div>
-                        <div id="costeo-categorias-container"></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;">
+                            <div class="step-label" style="margin-bottom:0;"><span class="step-num">3</span> Ingredientes y cantidades usadas</div>
+                            <button type="button" class="link-add" onclick="guardarReceta()"><span data-icon="save"></span> Guardar como receta</button>
+                        </div>
+                        <div id="costeo-categorias-container" style="margin-top:12px;"></div>
                     </div>
                 </div>
 
@@ -639,6 +667,7 @@
 
                         <!-- Datos para el cliente (van en el PDF) -->
                         <div class="client-note">Lo siguiente va en el formulario del cliente (sin tus costos internos):</div>
+                        <div class="sum-row"><span>Extras de diseño</span><span class="v" id="res-extras">$0.00</span></div>
                         <div class="sum-row" style="align-items:center;">
                             <span>Envío</span>
                             <span class="envio-input"><span>$</span><input type="number" id="input-envio" min="0" value="0" placeholder="0"></span>
@@ -684,6 +713,24 @@
                     </button>
                 </div>
                 <div id="inventario-container"></div>
+
+                <!-- Extras de diseño -->
+                <div class="inv-cat" style="margin-top:20px;">
+                    <div class="inv-cat-head">
+                        <div class="inv-cat-title"><span data-icon="sparkles"></span> Extras de diseño <span class="label-hint">(precio fijo que se suma al pastel)</span></div>
+                        <button class="link-add" onclick="agregarExtra()"><span data-icon="plus"></span> Añadir extra</button>
+                    </div>
+                    <div id="extras-inv"></div>
+                </div>
+
+                <!-- Recetas guardadas -->
+                <div class="inv-cat" style="margin-top:20px;">
+                    <div class="inv-cat-head">
+                        <div class="inv-cat-title"><span data-icon="book"></span> Mis recetas</div>
+                        <span class="label-hint">Se crean desde el cotizador con "Guardar como receta"</span>
+                    </div>
+                    <div id="recetas-inv"></div>
+                </div>
             </div>
         </section>
 
@@ -796,7 +843,9 @@
             'chevron-down': '<path d="m6 9 6 6 6-6"/>',
             'image': '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
             'receipt': '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/>',
-            'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>'
+            'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
+            'sparkles': '<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>',
+            'book': '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>'
         };
 
         /* ===================== LOGO (imagen oficial embebida) ===================== */
@@ -856,8 +905,37 @@
             operativos: 'Costos Fijos / Operativos'
         };
 
+        /* Factores de escalado por tamaño (proporcional a porciones, base = Mediano) */
+        const SIZE_FACTORS = {
+            'Bento (1-2 px)': 0.25,
+            'Petit (8-10 px)': 0.55,
+            'Chico (12-14 px)': 0.75,
+            'Mediano (15-20 px)': 1,
+            'Grande (25-30 px)': 1.6,
+            'Extra Grande (35-40 px)': 2.2
+        };
+
+        const DEFAULT_EXTRAS = [
+            { id: 'x1', nombre: 'Topper', precio: 40 },
+            { id: 'x2', nombre: 'Flores artificiales', precio: 60 },
+            { id: 'x3', nombre: 'Flores naturales', precio: 150 },
+            { id: 'x4', nombre: 'Piso adicional', precio: 400 }
+        ];
+
+        const DEFAULT_RECETAS = [
+            {
+                id: 'rec1', nombre: 'Vainilla clásico', tamanoBase: 'Mediano (15-20 px)',
+                sabor: 'Vainilla', relleno: 'Mermelada de fresa', cobertura: 'Buttercream',
+                usos: { p1: 500, p2: 4, p3: 90, b1: 250, b4: 400, r2: 200, d4: 1, d5: 1, o1: 1, o2: 1, o3: 1 }
+            }
+        ];
+
         let db = {};
+        let recetas = [];
+        let extras = [];
         let cantidadesUsadas = {};
+        let extrasSeleccionados = {}; // { idExtra: true }
+        let recetaActiva = '';
         let tamanoSeleccionado = '';
         let formaSeleccionada = '';
         let entregaTipo = '';
@@ -873,10 +951,14 @@
         function initApp() {
             cargarDatos();
             document.getElementById('brand-mark').style.backgroundImage = 'url("' + LOGO_URL + '")';
-            document.getElementById('fp-logo').innerHTML = '<img src="' + LOGO_URL + '" alt="Delizi Bake\'s">';
+            document.getElementById('fp-logo').innerHTML = '<img src="' + LOGO_URL + '" alt="Logo">';
             renderIcons();
             renderizarInventario();
             renderizarCotizador();
+            renderRecetaSelect();
+            renderExtrasChips();
+            renderExtrasInv();
+            renderRecetasInv();
             setupEvents();
             inicializarPedido();
             calcularTotales();
@@ -891,18 +973,200 @@
         }
 
         function siguienteNumPedido() {
-            let n = parseInt(localStorage.getItem('deliziPedidoNum') || '1000', 10) + 1;
-            return 'DB-' + n;
+            let n = parseInt(localStorage.getItem('bakeryPedidoNum') || '1000', 10) + 1;
+            return 'P-' + n;
         }
 
         function cargarDatos() {
-            const saved = localStorage.getItem('deliziCostosV2');
+            const saved = localStorage.getItem('bakeryDB');
             if (saved) {
                 db = JSON.parse(saved);
                 for (const cat in DEFAULT_DB) { if (!db[cat]) db[cat] = JSON.parse(JSON.stringify(DEFAULT_DB[cat])); }
             } else {
                 db = JSON.parse(JSON.stringify(DEFAULT_DB));
             }
+            const savedRec = localStorage.getItem('bakeryRecetas');
+            recetas = savedRec ? JSON.parse(savedRec) : JSON.parse(JSON.stringify(DEFAULT_RECETAS));
+            const savedExt = localStorage.getItem('bakeryExtras');
+            extras = savedExt ? JSON.parse(savedExt) : JSON.parse(JSON.stringify(DEFAULT_EXTRAS));
+        }
+
+        function guardarRecetasLS() { localStorage.setItem('bakeryRecetas', JSON.stringify(recetas)); }
+        function guardarExtrasLS() { localStorage.setItem('bakeryExtras', JSON.stringify(extras)); }
+
+        /* ===================== RECETAS ===================== */
+        function renderRecetaSelect() {
+            const sel = document.getElementById('receta-select');
+            const cur = recetaActiva;
+            sel.innerHTML = '<option value="">— Cotización libre (sin receta) —</option>' +
+                recetas.map(r => `<option value="${esc(r.id)}">${esc(r.nombre)}</option>`).join('');
+            sel.value = cur || '';
+        }
+
+        function seleccionarReceta(id) {
+            recetaActiva = id;
+            if (!id) return;
+            const r = recetas.find(x => x.id === id);
+            if (!r) return;
+            // Prellenar sabores del ticket
+            if (r.sabor) document.getElementById('info-pan').value = r.sabor;
+            if (r.relleno) document.getElementById('info-relleno').value = r.relleno;
+            if (r.cobertura) document.getElementById('info-cobertura').value = r.cobertura;
+            // Si aún no hay tamaño, usar el tamaño base de la receta
+            if (!tamanoSeleccionado) {
+                const btn = [...document.querySelectorAll('.size-chip')].find(b => b.getAttribute('onclick').includes(r.tamanoBase));
+                if (btn) seleccionarTamano(r.tamanoBase, btn);
+                else aplicarReceta();
+            } else {
+                aplicarReceta();
+            }
+            mostrarToast('Receta aplicada: ' + r.nombre);
+        }
+
+        function redondearUso(v) {
+            if (v >= 20) return Math.round(v);
+            return Math.round(v * 10) / 10;
+        }
+
+        function aplicarReceta() {
+            const r = recetas.find(x => x.id === recetaActiva);
+            if (!r) return;
+            const fBase = SIZE_FACTORS[r.tamanoBase] || 1;
+            const fSel = SIZE_FACTORS[tamanoSeleccionado] || fBase;
+            const factor = fSel / fBase;
+            cantidadesUsadas = {};
+            for (const itemId in r.usos) {
+                cantidadesUsadas[itemId] = redondearUso(r.usos[itemId] * factor);
+            }
+            renderizarCotizador();
+            calcularTotales();
+        }
+
+        function guardarReceta() {
+            if (Object.keys(cantidadesUsadas).length === 0) {
+                mostrarToast('Captura cantidades de ingredientes primero');
+                return;
+            }
+            if (!tamanoSeleccionado) {
+                mostrarToast('Elige el tamaño del pastel (será la base de la receta)');
+                return;
+            }
+            const nombre = prompt('Nombre de la receta (ej. "Chocolate con fresas"):');
+            if (!nombre || !nombre.trim()) return;
+            recetas.push({
+                id: 'rec' + Date.now(),
+                nombre: nombre.trim(),
+                tamanoBase: tamanoSeleccionado,
+                sabor: document.getElementById('info-pan').value.trim(),
+                relleno: document.getElementById('info-relleno').value.trim(),
+                cobertura: document.getElementById('info-cobertura').value.trim(),
+                usos: JSON.parse(JSON.stringify(cantidadesUsadas))
+            });
+            guardarRecetasLS();
+            renderRecetaSelect();
+            renderRecetasInv();
+            mostrarToast('Receta guardada: ' + nombre.trim());
+        }
+
+        function eliminarReceta(id) {
+            const r = recetas.find(x => x.id === id);
+            if (!r) return;
+            if (!confirm('¿Eliminar la receta "' + r.nombre + '"?')) return;
+            recetas = recetas.filter(x => x.id !== id);
+            if (recetaActiva === id) recetaActiva = '';
+            guardarRecetasLS();
+            renderRecetaSelect();
+            renderRecetasInv();
+        }
+
+        function renderRecetasInv() {
+            const c = document.getElementById('recetas-inv');
+            if (!recetas.length) {
+                c.innerHTML = '<div class="empty-hint">Aún no tienes recetas. Cotiza un pastel y usa "Guardar como receta".</div>';
+                return;
+            }
+            c.innerHTML = recetas.map(r => {
+                const nItems = Object.keys(r.usos).length;
+                const extrasTxt = [r.sabor, r.relleno, r.cobertura].filter(Boolean).join(' · ');
+                return `
+                <div class="recipe-row">
+                    <div>
+                        <div class="rname">${esc(r.nombre)}</div>
+                        <div class="rmeta">Base: ${esc(r.tamanoBase)} · ${nItems} ingredientes${extrasTxt ? ' · ' + esc(extrasTxt) : ''}</div>
+                    </div>
+                    <button class="icon-btn" onclick="eliminarReceta('${esc(r.id)}')" title="Eliminar receta"><span data-icon="x"></span></button>
+                </div>`;
+            }).join('');
+            renderIcons(c);
+        }
+
+        /* ===================== EXTRAS DE DISEÑO ===================== */
+        function renderExtrasChips() {
+            const c = document.getElementById('extras-chips');
+            if (!extras.length) {
+                c.innerHTML = '<span class="empty-hint">Define tus extras en la pestaña "Mis precios".</span>';
+                return;
+            }
+            c.innerHTML = extras.map(x => `
+                <button type="button" class="toggle-chip extra-chip ${extrasSeleccionados[x.id] ? 'is-active' : ''}" onclick="toggleExtra('${esc(x.id)}')">
+                    ${esc(x.nombre)}<span class="xp">+${money(x.precio)}</span>
+                </button>`).join('');
+        }
+
+        function toggleExtra(id) {
+            if (extrasSeleccionados[id]) delete extrasSeleccionados[id];
+            else extrasSeleccionados[id] = true;
+            renderExtrasChips();
+            calcularTotales();
+        }
+
+        function totalExtras() {
+            let t = 0;
+            extras.forEach(x => { if (extrasSeleccionados[x.id]) t += Number(x.precio) || 0; });
+            return t;
+        }
+
+        function extrasElegidos() {
+            return extras.filter(x => extrasSeleccionados[x.id]);
+        }
+
+        function renderExtrasInv() {
+            const c = document.getElementById('extras-inv');
+            if (!extras.length) {
+                c.innerHTML = '<div class="empty-hint">Añade extras como topper, flores, piso adicional…</div>';
+                return;
+            }
+            c.innerHTML = extras.map((x, idx) => `
+                <div class="inv-row" style="grid-template-columns: 1fr 1fr 40px;">
+                    <div><input type="text" value="${esc(x.nombre)}" class="inv-input" onchange="updateExtra(${idx}, 'nombre', this.value)" placeholder="Nombre del extra"></div>
+                    <div class="inv-price"><span class="peso">$</span><input type="number" value="${x.precio}" class="inv-input" onchange="updateExtra(${idx}, 'precio', this.value)"></div>
+                    <div class="inv-row-actions"><button class="icon-btn" onclick="eliminarExtra(${idx})" title="Eliminar"><span data-icon="x"></span></button></div>
+                </div>`).join('');
+            renderIcons(c);
+        }
+
+        function updateExtra(idx, field, value) {
+            if (field === 'precio') extras[idx][field] = parseFloat(value) || 0;
+            else extras[idx][field] = value;
+            guardarExtrasLS();
+            renderExtrasChips();
+            calcularTotales();
+        }
+
+        function agregarExtra() {
+            extras.push({ id: 'x' + Date.now(), nombre: '', precio: 0 });
+            renderExtrasInv();
+        }
+
+        function eliminarExtra(idx) {
+            if (!confirm('¿Eliminar este extra?')) return;
+            const id = extras[idx].id;
+            extras.splice(idx, 1);
+            delete extrasSeleccionados[id];
+            guardarExtrasLS();
+            renderExtrasInv();
+            renderExtrasChips();
+            calcularTotales();
         }
 
         /* ===================== TABS ===================== */
@@ -967,12 +1231,14 @@
         }
 
         function guardarInventario(btn) {
-            localStorage.setItem('deliziCostosV2', JSON.stringify(db));
+            localStorage.setItem('bakeryDB', JSON.stringify(db));
+            guardarExtrasLS();
             const original = btn.innerHTML;
             btn.innerHTML = svgOf('check') + ' ¡Guardado!';
             btn.classList.add('is-success');
             setTimeout(() => { btn.innerHTML = original; btn.classList.remove('is-success'); renderIcons(btn); }, 1800);
             renderizarCotizador();
+            renderExtrasChips();
             calcularTotales();
             mostrarToast('Inventario guardado');
         }
@@ -1048,14 +1314,16 @@
             const precioVenta = costoTotal * (1 + (margenVal / 100));
             const gananciaLibre = precioVenta - costoTotal;
 
+            const extrasT = totalExtras();
             const envio = parseFloat(document.getElementById('input-envio').value) || 0;
-            const totalCliente = precioVenta + envio;
+            const totalCliente = precioVenta + extrasT + envio;
 
             document.getElementById('res-mat').innerText = money(costoMateriales);
             document.getElementById('res-op').innerText = money(costoOperativos);
             document.getElementById('res-costo-total').innerText = money(costoTotal);
             document.getElementById('res-precio-venta').innerText = money(precioVenta);
             document.getElementById('res-ganancia-libre').innerText = '+' + money(gananciaLibre);
+            document.getElementById('res-extras').innerText = money(extrasT);
             document.getElementById('res-total-cliente').innerText = money(totalCliente);
         }
 
@@ -1083,12 +1351,16 @@
         function limpiarCotizador() {
             if (!confirm('¿Limpiar todas las cantidades y datos del cliente?')) return;
             cantidadesUsadas = {};
+            extrasSeleccionados = {};
+            recetaActiva = '';
+            document.getElementById('receta-select').value = '';
             tamanoSeleccionado = '';
             formaSeleccionada = '';
             entregaTipo = '';
             pedidoUrgente = false;
             metodoPago = '';
             document.querySelectorAll('.size-chip, .toggle-chip').forEach(b => b.classList.remove('is-active'));
+            renderExtrasChips();
             removerImagen();
             ['cli-nombre', 'cli-tel', 'cli-email', 'cli-dir', 'ev-fecha', 'ev-invitados', 'ev-ubicacion',
              'info-pan', 'info-relleno', 'info-cobertura', 'info-notas', 'info-mensaje', 'info-alergias']
@@ -1123,8 +1395,10 @@
                 return;
             }
 
+            const extrasT = totalExtras();
+            const precioConExtras = precioVenta + extrasT;
             const envio = parseFloat(document.getElementById('input-envio').value) || 0;
-            const total = precioVenta + envio;
+            const total = precioConExtras + envio;
             const prepago = parseFloat(document.getElementById('input-prepago').value) || 0;
 
             // Rellenar el formulario imprimible (SIN costos internos)
@@ -1143,9 +1417,11 @@
             setTxt('fp-mensaje', val('info-mensaje'));
             setTxt('fp-alergias', val('info-alergias'));
 
-            // Detalles: tamaño + notas de diseño
+            // Detalles: tamaño + extras + notas de diseño
             let detalles = '';
             if (tamanoSeleccionado) detalles += 'Tamaño: ' + tamanoSeleccionado + '\n';
+            const elegidos = extrasElegidos();
+            if (elegidos.length) detalles += 'Extras: ' + elegidos.map(x => x.nombre + ' (+' + money(x.precio) + ')').join(', ') + '\n';
             if (val('info-notas')) detalles += val('info-notas');
             setTxt('fp-detalles', detalles.trim());
 
@@ -1178,15 +1454,15 @@
             if (imagenAdjunta && preview.src) { imgEl.src = preview.src; imgEl.style.display = ''; }
             else { imgEl.removeAttribute('src'); imgEl.style.display = 'none'; }
 
-            // Totales (cara al cliente)
+            // Totales (cara al cliente) — el precio incluye los extras de diseño
             setTxt('fp-prepago', prepago > 0 ? money(prepago) : '—');
-            setTxt('fp-precio', money(precioVenta));
+            setTxt('fp-precio', money(precioConExtras));
             setTxt('fp-envio', envio > 0 ? money(envio) : '—');
             setTxt('fp-total', money(total));
 
             // Guardar consecutivo del número de pedido
             const numMatch = (val('ped-num').match(/(\d+)\s*$/) || [])[1];
-            if (numMatch) localStorage.setItem('deliziPedidoNum', numMatch);
+            if (numMatch) localStorage.setItem('bakeryPedidoNum', numMatch);
 
             // Imprimir / Guardar como PDF
             setTimeout(() => window.print(), 60);
@@ -1196,6 +1472,8 @@
             tamanoSeleccionado = tamano;
             document.querySelectorAll('.size-chip').forEach(b => b.classList.remove('is-active'));
             btn.classList.add('is-active');
+            // Si hay receta activa, re-escalar las cantidades al nuevo tamaño
+            if (recetaActiva) aplicarReceta();
         }
 
         function seleccionarForma(forma, btn) {
@@ -1224,7 +1502,7 @@
         function prepagoMitad() {
             const precioVenta = parseFloat(document.getElementById('res-precio-venta').innerText.replace(/[^0-9.]/g, '')) || 0;
             const envio = parseFloat(document.getElementById('input-envio').value) || 0;
-            const total = precioVenta + envio;
+            const total = precioVenta + totalExtras() + envio;
             if (total <= 0) { mostrarToast('Primero cotiza el pastel'); return; }
             document.getElementById('input-prepago').value = (total / 2).toFixed(2);
         }
@@ -1255,22 +1533,24 @@
             const relleno = document.getElementById('info-relleno').value.trim() || 'No especificado';
             const notas = document.getElementById('info-notas').value.trim();
             const precioVenta = document.getElementById('res-precio-venta').innerText;
+            const totalCliente = document.getElementById('res-total-cliente').innerText;
 
-            if (precioVenta === '$0.00') {
+            if (precioVenta === '$0.00' && totalCliente === '$0.00') {
                 mostrarToast('Añade al menos un ingrediente o costo para el ticket');
                 return;
             }
 
-            let texto = `*COTIZACIÓN DELIZI BAKE'S* 🎂\n\n`;
+            let texto = `*COTIZACIÓN* 🎂\n\n`;
             texto += `*Tamaño:* ${tamano}\n`;
             texto += `*Sabor de Pan:* ${pan}\n`;
             texto += `*Relleno:* ${relleno}\n`;
+            const elegidosT = extrasElegidos();
+            if (elegidosT.length) texto += `*Extras:* ${elegidosT.map(x => x.nombre).join(', ')}\n`;
             if (notas) texto += `\n*Detalles / Decoración:*\n_${notas}_\n`;
             if (imagenAdjunta) texto += `\n*(Se adjuntó imagen de referencia para el diseño)*\n`;
             texto += `\n-----------------------\n`;
-            texto += `*TOTAL: ${precioVenta}*\n`;
-            texto += `-----------------------\n`;
-            texto += `_Nota: Las figuras en fondant no se manejan sin excepción._`;
+            texto += `*TOTAL: ${totalCliente}*\n`;
+            texto += `-----------------------`;
 
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(texto).then(() => mostrarToast('Ticket copiado, pégalo en WhatsApp')).catch(() => copiarFallback(texto));
