@@ -1,7 +1,7 @@
 {
-  "name": "Delizi Bake's · Cotizador",
-  "short_name": "Delizi Bake's",
-  "description": "Cotizador de pasteles y generador de pedidos de Delizi Bake's.",
+  "name": "Pastelia · Cotizador profesional",
+  "short_name": "Pastelia",
+  "description": "Cotizador profesional de pasteles: costos reales, recetas guardadas y pedidos en PDF.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
