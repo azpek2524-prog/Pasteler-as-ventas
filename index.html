@@ -371,6 +371,54 @@
         @keyframes priceBump { 0% { transform: scale(1); } 45% { transform: scale(1.07); } 100% { transform: scale(1); } }
         .price-big.bump { animation: priceBump .32s ease-out; }
 
+        /* ---------- Badge de la pestaña Pedidos ---------- */
+        .tab-badge { background: var(--gold); color: #fff; font-size: 10.5px; font-weight: 700; min-width: 17px; height: 17px; padding: 0 5px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; margin-left: 1px; }
+
+        /* ---------- Agenda: KPIs ---------- */
+        .kpi-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 22px; }
+        @media (min-width: 720px) { .kpi-row { grid-template-columns: repeat(4, 1fr); } }
+        .kpi { background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 16px; }
+        .kpi-accent { background: linear-gradient(150deg, var(--gold-soft), #fff); border-color: #EAD9B4; }
+        .kpi-label { display: block; font-size: 11.5px; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .04em; }
+        .kpi-val { display: block; font-size: 24px; font-weight: 800; color: var(--ink); font-family: var(--font-head); margin-top: 4px; }
+        .kpi-accent .kpi-val { color: #9A7B34; }
+
+        /* ---------- Agenda: toolbar ---------- */
+        .ped-toolbar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .ped-search { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 8px 12px; background: #fff; flex: 1 1 220px; min-width: 0; }
+        .ped-search .icon { color: var(--ink-faint); font-size: 17px; }
+        .ped-search input { border: 0; outline: none; font-size: 14px; font-family: inherit; color: var(--ink); width: 100%; background: transparent; }
+
+        /* ---------- Agenda: tarjetas de pedido ---------- */
+        .ped-card { display: grid; grid-template-columns: 1fr auto; gap: 10px 14px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-left: 4px solid var(--line-strong); border-radius: var(--radius-sm); background: #fff; margin-bottom: 12px; transition: box-shadow .15s; }
+        .ped-card:hover { box-shadow: var(--shadow-sm); }
+        .ped-card.st-cotizado { border-left-color: var(--ink-faint); }
+        .ped-card.st-apartado { border-left-color: var(--gold); }
+        .ped-card.st-proceso  { border-left-color: #5B8DB8; }
+        .ped-card.st-entregado{ border-left-color: var(--success); opacity: .82; }
+        .ped-card.is-late { border-left-color: var(--danger); background: #FEF7F6; }
+        .ped-cliente { font-weight: 700; font-size: 15px; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .ped-folio { font-size: 11px; font-weight: 600; color: var(--ink-faint); background: var(--cream); padding: 2px 7px; border-radius: 999px; }
+        .ped-detalle { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
+        .ped-entrega { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; }
+        .ped-entrega .icon { font-size: 14px; }
+        .ped-badge-late { color: var(--danger); font-weight: 700; }
+        .ped-badge-today { color: #9A7B34; font-weight: 700; }
+        .ped-money { text-align: right; }
+        .ped-total { font-size: 16px; font-weight: 800; color: var(--ink); }
+        .ped-saldo { font-size: 12px; margin-top: 2px; }
+        .ped-saldo.debe { color: var(--danger); font-weight: 700; }
+        .ped-saldo.pagado { color: var(--success); font-weight: 700; }
+        .ped-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-top: 10px; border-top: 1px dashed var(--line); }
+        .ped-estado-sel { -webkit-appearance: none; appearance: none; border: 1.5px solid var(--line-strong); border-radius: 8px; padding: 6px 28px 6px 10px; font-size: 12.5px; font-weight: 600; font-family: inherit; color: var(--ink); background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23929D7C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center; cursor: pointer; }
+        .ped-mini-btn { display: inline-flex; align-items: center; gap: 5px; border: 1.5px solid var(--line-strong); background: #fff; color: var(--ink-soft); font-size: 12.5px; font-weight: 600; font-family: inherit; padding: 6px 11px; border-radius: 8px; cursor: pointer; transition: all .15s; }
+        .ped-mini-btn:hover { border-color: var(--sage); color: var(--sage-700); background: var(--sage-050); }
+        .ped-mini-btn.danger:hover { border-color: var(--danger); color: var(--danger); background: #FBECEA; }
+        .ped-mini-btn .icon { font-size: 15px; }
+        .ped-empty { text-align: center; padding: 40px 20px; color: var(--ink-faint); }
+        .ped-empty .icon { font-size: 40px; color: var(--line-strong); }
+        .ped-empty p { margin-top: 10px; font-size: 14px; }
+
         .client-note { font-size: 11.5px; color: var(--ink-faint); margin: 16px 0 10px; line-height: 1.4; border-top: 1px dashed var(--line-strong); padding-top: 14px; }
         .mini-link { border: 0; background: transparent; color: var(--sage-700); font-size: 11px; font-weight: 600; cursor: pointer; padding: 1px 4px; border-radius: 6px; text-decoration: underline; }
         .mini-link:hover { background: var(--sage-050); }
@@ -497,6 +545,10 @@
             <nav class="tabs" role="tablist">
                 <button id="tab-cotizador" class="tab is-active" onclick="switchTab('cotizador')">
                     <span data-icon="calculator"></span><span class="tab-label-full">Cotizar</span>
+                </button>
+                <button id="tab-pedidos" class="tab" onclick="switchTab('pedidos')">
+                    <span data-icon="calendar"></span><span class="tab-label-full">Pedidos</span>
+                    <span class="tab-badge hidden" id="tab-pedidos-badge">0</span>
                 </button>
                 <button id="tab-inventario" class="tab" onclick="switchTab('inventario')">
                     <span data-icon="shopping-bag"></span><span class="tab-label-full">Mis precios</span>
@@ -725,7 +777,10 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-primary btn-block" onclick="generarFormularioPDF()" style="margin-bottom:10px;">
+                        <button class="btn btn-primary btn-block" onclick="guardarPedidoAgenda()" style="margin-bottom:10px;">
+                            <span data-icon="calendar-plus"></span> Guardar en agenda
+                        </button>
+                        <button class="btn btn-outline btn-block" onclick="generarFormularioPDF()" style="margin-bottom:10px;">
                             <span data-icon="file-text"></span> Generar pedido (PDF)
                         </button>
                         <button class="btn btn-outline btn-block" onclick="copiarTicketCliente()" style="margin-bottom:10px;">
@@ -736,6 +791,40 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ================= PEDIDOS (AGENDA) ================= -->
+        <section id="section-pedidos" class="hidden">
+            <div class="card card-pad">
+                <div class="inv-header">
+                    <div>
+                        <h2 class="section-title">Agenda de pedidos</h2>
+                        <p class="section-sub" style="max-width:520px;">Tus pedidos, entregas y saldos en un solo lugar. Guarda una cotización con "Guardar en agenda".</p>
+                    </div>
+                </div>
+
+                <div class="kpi-row">
+                    <div class="kpi"><span class="kpi-label">Entregas hoy</span><span class="kpi-val" id="kpi-hoy">0</span></div>
+                    <div class="kpi"><span class="kpi-label">Esta semana</span><span class="kpi-val" id="kpi-semana">0</span></div>
+                    <div class="kpi kpi-accent"><span class="kpi-label">Por cobrar</span><span class="kpi-val" id="kpi-cobrar">$0</span></div>
+                    <div class="kpi"><span class="kpi-label">Pedidos activos</span><span class="kpi-val" id="kpi-activos">0</span></div>
+                </div>
+
+                <div class="ped-toolbar">
+                    <div class="ped-search">
+                        <span data-icon="search"></span>
+                        <input type="text" id="ped-buscar" placeholder="Buscar por cliente o folio..." oninput="renderPedidos()">
+                    </div>
+                    <div class="toggle-row" id="ped-filtros">
+                        <button type="button" class="toggle-chip is-active" data-filtro="activos" onclick="filtrarPedidos('activos', this)">Activos</button>
+                        <button type="button" class="toggle-chip" data-filtro="todos" onclick="filtrarPedidos('todos', this)">Todos</button>
+                        <button type="button" class="toggle-chip" data-filtro="Apartado" onclick="filtrarPedidos('Apartado', this)">Apartados</button>
+                        <button type="button" class="toggle-chip" data-filtro="Entregado" onclick="filtrarPedidos('Entregado', this)">Entregados</button>
+                    </div>
+                </div>
+
+                <div id="pedidos-lista"></div>
             </div>
         </section>
 
@@ -884,7 +973,12 @@
             'receipt': '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/>',
             'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
             'sparkles': '<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>',
-            'book': '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>'
+            'book': '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>',
+            'calendar': '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+            'calendar-plus': '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M12 14v4"/><path d="M10 16h4"/>',
+            'search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+            'wallet': '<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
+            'inbox': '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>'
         };
 
         /* ===================== MARCA DEL PRODUCTO =====================
@@ -994,6 +1088,8 @@
         let db = {};
         let recetas = [];
         let extras = [];
+        let pedidos = [];
+        let pedidoFiltro = 'activos';
         let cantidadesUsadas = {};
         let extrasSeleccionados = {}; // { idExtra: true }
         let recetaActiva = '';
@@ -1030,6 +1126,7 @@
             renderExtrasChips();
             renderExtrasInv();
             renderRecetasInv();
+            renderPedidos();
             setupEvents();
             inicializarPedido();
             iniciarBienvenida();
@@ -1072,10 +1169,13 @@
             recetas = savedRec ? JSON.parse(savedRec) : JSON.parse(JSON.stringify(DEFAULT_RECETAS));
             const savedExt = localStorage.getItem('bakeryExtras');
             extras = savedExt ? JSON.parse(savedExt) : JSON.parse(JSON.stringify(DEFAULT_EXTRAS));
+            const savedPed = localStorage.getItem('bakeryPedidos');
+            pedidos = savedPed ? JSON.parse(savedPed) : [];
         }
 
         function guardarRecetasLS() { localStorage.setItem('bakeryRecetas', JSON.stringify(recetas)); }
         function guardarExtrasLS() { localStorage.setItem('bakeryExtras', JSON.stringify(extras)); }
+        function guardarPedidosLS() { localStorage.setItem('bakeryPedidos', JSON.stringify(pedidos)); }
 
         /* ===================== RECETAS ===================== */
         function renderRecetaSelect() {
@@ -1256,6 +1356,7 @@
         function switchTab(tabId) {
             const map = {
                 cotizador: { btn: 'tab-cotizador', sec: 'section-cotizador' },
+                pedidos: { btn: 'tab-pedidos', sec: 'section-pedidos' },
                 inventario: { btn: 'tab-inventario', sec: 'section-inventario' }
             };
             for (const k in map) {
@@ -1265,6 +1366,7 @@
             document.getElementById(map[tabId].btn).classList.add('is-active');
             document.getElementById(map[tabId].sec).classList.remove('hidden');
             if (tabId === 'cotizador') { renderizarCotizador(); calcularTotales(); }
+            if (tabId === 'pedidos') { renderPedidos(); }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1625,6 +1727,201 @@
             imagenAdjunta = false;
         }
 
+        /* ===================== AGENDA DE PEDIDOS ===================== */
+        const ESTADOS = ['Cotizado', 'Apartado', 'En proceso', 'Entregado'];
+        const ESTADO_CLASS = { 'Cotizado': 'st-cotizado', 'Apartado': 'st-apartado', 'En proceso': 'st-proceso', 'Entregado': 'st-entregado' };
+
+        function hoyISO() { return new Date().toISOString().slice(0, 10); }
+        function diasHasta(iso) {
+            if (!iso) return null;
+            const hoy = new Date(hoyISO() + 'T00:00:00');
+            const d = new Date(iso + 'T00:00:00');
+            return Math.round((d - hoy) / 86400000);
+        }
+
+        function guardarPedidoAgenda() {
+            const precioVenta = parseFloat(document.getElementById('res-precio-venta').innerText.replace(/[^0-9.]/g, '')) || 0;
+            const total = parseFloat(document.getElementById('res-total-cliente').innerText.replace(/[^0-9.]/g, '')) || 0;
+            if (total <= 0) { mostrarToast('Primero cotiza el pastel'); return; }
+            if (!val('cli-nombre')) {
+                mostrarToast('Falta el nombre del cliente');
+                document.getElementById('cli-nombre').focus();
+                return;
+            }
+            const prepago = parseFloat(document.getElementById('input-prepago').value) || 0;
+            const pedido = {
+                id: 'ped' + Date.now(),
+                folio: val('ped-num') || siguienteNumPedido(),
+                cliente: val('cli-nombre'),
+                tel: val('cli-tel'),
+                fechaEntrega: val('ev-fecha'),
+                fechaPedido: val('ped-fecha') || hoyISO(),
+                tamano: tamanoSeleccionado,
+                sabor: val('info-pan'),
+                relleno: val('info-relleno'),
+                extras: extrasElegidos().map(x => x.nombre),
+                notas: val('info-notas'),
+                total: total,
+                pagado: prepago,
+                estado: prepago > 0 ? 'Apartado' : 'Cotizado',
+                creado: Date.now()
+            };
+            pedidos.push(pedido);
+            guardarPedidosLS();
+            // Avanzar folio
+            const numMatch = (pedido.folio.match(/(\d+)\s*$/) || [])[1];
+            if (numMatch) localStorage.setItem('bakeryPedidoNum', numMatch);
+            renderPedidos();
+            mostrarToast('Pedido guardado en la agenda ✓');
+        }
+
+        function pedidoActivo(p) { return p.estado !== 'Entregado'; }
+
+        function renderPedidos() {
+            const lista = document.getElementById('pedidos-lista');
+            // KPIs
+            const hoy = hoyISO();
+            let entHoy = 0, entSemana = 0, porCobrar = 0, activos = 0;
+            pedidos.forEach(p => {
+                const d = diasHasta(p.fechaEntrega);
+                if (pedidoActivo(p)) {
+                    activos++;
+                    porCobrar += Math.max(0, (p.total || 0) - (p.pagado || 0));
+                    if (d === 0) entHoy++;
+                    if (d !== null && d >= 0 && d <= 7) entSemana++;
+                }
+            });
+            document.getElementById('kpi-hoy').innerText = entHoy;
+            document.getElementById('kpi-semana').innerText = entSemana;
+            document.getElementById('kpi-cobrar').innerText = money(porCobrar);
+            document.getElementById('kpi-activos').innerText = activos;
+
+            // Badge en la pestaña
+            const badge = document.getElementById('tab-pedidos-badge');
+            badge.innerText = activos;
+            badge.classList.toggle('hidden', activos === 0);
+
+            // Filtrar
+            const q = (document.getElementById('ped-buscar').value || '').toLowerCase().trim();
+            let items = pedidos.slice();
+            if (pedidoFiltro === 'activos') items = items.filter(pedidoActivo);
+            else if (pedidoFiltro !== 'todos') items = items.filter(p => p.estado === pedidoFiltro);
+            if (q) items = items.filter(p => (p.cliente || '').toLowerCase().includes(q) || (p.folio || '').toLowerCase().includes(q));
+
+            // Ordenar por fecha de entrega (próximas primero; sin fecha al final)
+            items.sort((a, b) => {
+                if (!a.fechaEntrega) return 1;
+                if (!b.fechaEntrega) return -1;
+                return a.fechaEntrega < b.fechaEntrega ? -1 : 1;
+            });
+
+            if (!items.length) {
+                lista.innerHTML = `<div class="ped-empty"><span data-icon="inbox"></span><p>${pedidos.length ? 'No hay pedidos en este filtro.' : 'Aún no tienes pedidos. Cotiza un pastel y toca "Guardar en agenda".'}</p></div>`;
+                renderIcons(lista);
+                return;
+            }
+
+            lista.innerHTML = items.map(p => {
+                const saldo = Math.max(0, (p.total || 0) - (p.pagado || 0));
+                const d = diasHasta(p.fechaEntrega);
+                const late = pedidoActivo(p) && d !== null && d < 0;
+                let entregaTxt = 'Sin fecha';
+                let entregaCls = '';
+                if (p.fechaEntrega) {
+                    entregaTxt = fmtFecha(p.fechaEntrega);
+                    if (pedidoActivo(p)) {
+                        if (d < 0) { entregaTxt += ` · atrasado`; entregaCls = 'ped-badge-late'; }
+                        else if (d === 0) { entregaTxt += ` · HOY`; entregaCls = 'ped-badge-today'; }
+                        else if (d === 1) { entregaTxt += ` · mañana`; entregaCls = 'ped-badge-today'; }
+                        else if (d <= 7) { entregaTxt += ` · en ${d} días`; }
+                    }
+                }
+                const detalle = [p.sabor, p.tamano, p.extras && p.extras.length ? p.extras.join(', ') : ''].filter(Boolean).join(' · ');
+                const opts = ESTADOS.map(e => `<option value="${e}" ${p.estado === e ? 'selected' : ''}>${e}</option>`).join('');
+                const saldoHtml = saldo > 0
+                    ? `<div class="ped-saldo debe">Debe ${money(saldo)}</div>`
+                    : `<div class="ped-saldo pagado">Pagado ✓</div>`;
+                return `
+                <div class="ped-card ${ESTADO_CLASS[p.estado] || ''} ${late ? 'is-late' : ''}">
+                    <div class="ped-main">
+                        <div class="ped-cliente">${esc(p.cliente)} <span class="ped-folio">${esc(p.folio)}</span></div>
+                        <div class="ped-detalle">${esc(detalle || 'Pastel')}</div>
+                        <div class="ped-detalle ped-entrega ${entregaCls}"><span data-icon="calendar"></span> ${esc(entregaTxt)}</div>
+                    </div>
+                    <div class="ped-money">
+                        <div class="ped-total">${money(p.total)}</div>
+                        ${saldoHtml}
+                    </div>
+                    <div class="ped-actions">
+                        <select class="ped-estado-sel" onchange="cambiarEstadoPedido('${p.id}', this.value)">${opts}</select>
+                        <button class="ped-mini-btn" onclick="registrarPago('${p.id}')"><span data-icon="wallet"></span> Registrar pago</button>
+                        <button class="ped-mini-btn" onclick="copiarResumenPedido('${p.id}')"><span data-icon="send"></span> WhatsApp</button>
+                        <button class="ped-mini-btn danger" onclick="eliminarPedido('${p.id}')"><span data-icon="trash-2"></span></button>
+                    </div>
+                </div>`;
+            }).join('');
+            renderIcons(lista);
+        }
+
+        function filtrarPedidos(filtro, btn) {
+            pedidoFiltro = filtro;
+            document.querySelectorAll('#ped-filtros .toggle-chip').forEach(b => b.classList.remove('is-active'));
+            btn.classList.add('is-active');
+            renderPedidos();
+        }
+
+        function cambiarEstadoPedido(id, estado) {
+            const p = pedidos.find(x => x.id === id);
+            if (!p) return;
+            p.estado = estado;
+            guardarPedidosLS();
+            renderPedidos();
+        }
+
+        function registrarPago(id) {
+            const p = pedidos.find(x => x.id === id);
+            if (!p) return;
+            const saldo = Math.max(0, (p.total || 0) - (p.pagado || 0));
+            const entrada = prompt(`Saldo pendiente: ${money(saldo)}\n¿Cuánto abona el cliente ahora? (escribe "todo" para saldar)`, saldo.toFixed(2));
+            if (entrada === null) return;
+            let monto;
+            if (entrada.trim().toLowerCase() === 'todo') monto = saldo;
+            else monto = parseFloat(entrada.replace(/[^0-9.]/g, '')) || 0;
+            if (monto <= 0) return;
+            p.pagado = Math.min(p.total, (p.pagado || 0) + monto);
+            if (p.estado === 'Cotizado') p.estado = 'Apartado';
+            guardarPedidosLS();
+            renderPedidos();
+            mostrarToast('Pago registrado: ' + money(monto));
+        }
+
+        function eliminarPedido(id) {
+            const p = pedidos.find(x => x.id === id);
+            if (!p) return;
+            if (!confirm(`¿Eliminar el pedido de ${p.cliente} (${p.folio})?`)) return;
+            pedidos = pedidos.filter(x => x.id !== id);
+            guardarPedidosLS();
+            renderPedidos();
+        }
+
+        function copiarResumenPedido(id) {
+            const p = pedidos.find(x => x.id === id);
+            if (!p) return;
+            const saldo = Math.max(0, (p.total || 0) - (p.pagado || 0));
+            let t = `*${BRAND.nombre}* 🎂\n\n`;
+            t += `*Pedido:* ${p.folio}\n`;
+            t += `*Cliente:* ${p.cliente}\n`;
+            if (p.tamano) t += `*Tamaño:* ${p.tamano}\n`;
+            if (p.sabor) t += `*Sabor:* ${p.sabor}\n`;
+            if (p.extras && p.extras.length) t += `*Extras:* ${p.extras.join(', ')}\n`;
+            if (p.fechaEntrega) t += `*Entrega:* ${fmtFecha(p.fechaEntrega)}\n`;
+            t += `\n-----------------------\n`;
+            t += `*Total:* ${money(p.total)}\n`;
+            if (p.pagado > 0) t += `*Anticipo:* ${money(p.pagado)}\n`;
+            t += saldo > 0 ? `*Saldo por pagar:* ${money(saldo)}` : `*PAGADO ✓*`;
+            copiarTexto(t, 'Resumen del pedido copiado');
+        }
+
         /* ===================== TICKET ===================== */
         function copiarTicketCliente() {
             const tamano = tamanoSeleccionado || 'No especificado';
@@ -1651,17 +1948,21 @@
             texto += `*TOTAL: ${totalCliente}*\n`;
             texto += `-----------------------`;
 
+            copiarTexto(texto, 'Ticket copiado, pégalo en WhatsApp');
+        }
+
+        function copiarTexto(texto, msg) {
             if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(texto).then(() => mostrarToast('Ticket copiado, pégalo en WhatsApp')).catch(() => copiarFallback(texto));
+                navigator.clipboard.writeText(texto).then(() => mostrarToast(msg)).catch(() => copiarFallback(texto, msg));
             } else {
-                copiarFallback(texto);
+                copiarFallback(texto, msg);
             }
         }
 
-        function copiarFallback(texto) {
+        function copiarFallback(texto, msg) {
             const ta = document.createElement('textarea');
             ta.value = texto; document.body.appendChild(ta); ta.focus(); ta.select();
-            try { document.execCommand('copy'); mostrarToast('Ticket copiado, pégalo en WhatsApp'); }
+            try { document.execCommand('copy'); mostrarToast(msg || 'Copiado'); }
             catch (e) { alert('Copia manual:\n\n' + texto); }
             document.body.removeChild(ta);
         }
