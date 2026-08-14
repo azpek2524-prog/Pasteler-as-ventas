@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#efe7dd;font-family:'Nunito',system-ui,sans-serif}
+  .dv-turn{padding:48px 52px 40px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+  .dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}
+  .dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#4a342e;color:#fff;border-radius:4px;text-decoration:none}
+  .dv-tname{font:700 14px/1.2 'Nunito',sans-serif;color:#4a342e}
+  .dv-tsub{margin:0 0 26px;font:400 13px/1.5 'Nunito',sans-serif;color:rgba(74,52,46,.6);max-width:640px}
+  .dv-opts{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+  .dv-opt{flex:none;display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+  .dv-oid{font:700 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(74,52,46,.1);color:#4a342e;border-radius:5px;text-decoration:none}
+  .dv-olabel{display:flex;align-items:baseline;gap:8px;font:600 12px/1.3 'Nunito',sans-serif;color:rgba(74,52,46,.65);max-width:390px}
+  .dv-olabel b{color:#4a342e;font-weight:800}
+  .dv-opt:target .dv-oid{background:#ef7c8e;color:#fff}
+  .dv-next{margin:26px 0 0;font:600 12px/1.7 'Nunito',sans-serif;color:rgba(74,52,46,.55)}
+  .dv-next a{color:#ef7c8e;text-decoration:none;font-weight:800}
+  a{color:#ef7c8e}
+  a:hover{color:#e05c72}
+  /* phone shell */
+  .ph{width:390px;border-radius:46px;background:#3a2a24;padding:12px;box-shadow:0 30px 60px -20px rgba(74,52,46,.45),0 8px 20px -10px rgba(74,52,46,.3)}
+  .ph-scr{border-radius:36px;overflow:hidden;position:relative;height:812px}
+  .sb{display:flex;justify-content:space-between;align-items:center;padding:14px 26px 4px;font-weight:800;font-size:14px}
+  .sb-r{display:flex;gap:6px;align-items:center;font-size:12px}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1">
+  <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Inicio — 3 direcciones (móvil)</span></div>
+  <p class="dv-tsub">Pantalla nueva de Inicio con "resumen del día", pensada para que sorprenda a primera vista sin dejar de ser fácil. Misma paleta pastel cálida y las mismas herramientas al frente (cotizar, entregas de hoy, por cobrar) — cambia la <b>personalidad</b> y el <b>orden</b>. Elige un rumbo y lo extiendo a Cotizar, Agenda y Precios, más la versión de escritorio.</p>
+  <div class="dv-opts">
+
+    <!-- ============ 1a — Dulce (cálida y amable) ============ -->
+    <div class="dv-opt" id="1a">
+      <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a><span><b>Dulce.</b> Cálida y amable, un solo acento coral. Tarjeta de bienvenida grande + accesos claros.</span></div>
+      <div class="dv-card" style="width:auto;background:transparent;border:none;box-shadow:none;padding:0">
+        <div class="ph">
+          <div class="ph-scr" style="background:#fdf5ec;color:#4a342e;font-family:'Nunito',sans-serif">
+            <div class="sb" style="color:#4a342e"><span>9:41</span><span class="sb-r">📶 🔋</span></div>
+            <div style="padding:10px 22px 120px;height:100%;box-sizing:border-box;overflow:hidden">
+              <!-- header -->
+              <div style="display:flex;align-items:center;gap:12px;margin:8px 0 20px">
+                <div style="width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,#ffc7a8,#ef7c8e);display:flex;align-items:center;justify-content:center;font-size:24px">🧁</div>
+                <div style="flex:1">
+                  <div style="font-size:12px;color:rgba(74,52,46,.55);font-weight:700">Martes 13 de agosto</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:20px;line-height:1.1">¡Hola, Azucena!</div>
+                </div>
+                <div style="width:42px;height:42px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 12px -6px rgba(74,52,46,.3)">🔔</div>
+              </div>
+              <!-- hero -->
+              <div style="background:linear-gradient(135deg,#ffe1c9,#ffc9d4);border-radius:28px;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 14px 28px -14px rgba(239,124,142,.55)">
+                <div>
+                  <div style="font-size:13px;font-weight:800;color:#b25b52">Entregas de hoy</div>
+                  <div style="font-family:'Fredoka';font-weight:700;font-size:52px;line-height:1;color:#4a342e">3</div>
+                  <div style="font-size:12px;font-weight:700;color:rgba(74,52,46,.6)">Próxima 11:30 · Pastel Frida</div>
+                </div>
+                <div style="font-size:64px;filter:drop-shadow(0 8px 10px rgba(74,52,46,.2))">🎂</div>
+              </div>
+              <!-- quick actions -->
+              <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:16px">
+                <div style="background:#ef7c8e;border-radius:22px;padding:18px;color:#fff;box-shadow:0 12px 22px -10px rgba(239,124,142,.7)">
+                  <div style="font-size:26px">✏️</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:17px;margin-top:6px;line-height:1.1">Nueva<br>cotización</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <div style="background:#fff;border-radius:22px;padding:14px 16px;flex:1;box-shadow:0 8px 18px -12px rgba(74,52,46,.35)">
+                    <div style="font-size:20px">📅</div>
+                    <div style="font-weight:800;font-size:13px;margin-top:4px">Agenda</div>
+                  </div>
+                  <div style="background:#fff;border-radius:22px;padding:14px 16px;flex:1;box-shadow:0 8px 18px -12px rgba(74,52,46,.35)">
+                    <div style="font-size:20px">🧾</div>
+                    <div style="font-weight:800;font-size:13px;margin-top:4px">Precios</div>
+                  </div>
+                </div>
+              </div>
+              <!-- stats -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
+                <div style="background:#e9f2df;border-radius:20px;padding:14px 16px">
+                  <div style="font-size:12px;font-weight:800;color:#7f9663">Por cobrar</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:24px;color:#4a342e">$1,240</div>
+                </div>
+                <div style="background:#efe6f7;border-radius:20px;padding:14px 16px">
+                  <div style="font-size:12px;font-weight:800;color:#9179b8">Esta semana</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:24px;color:#4a342e">8 pedidos</div>
+                </div>
+              </div>
+              <!-- list -->
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin:20px 2px 10px">
+                <div style="font-family:'Fredoka';font-weight:600;font-size:16px">Próximas entregas</div>
+                <div style="font-size:12px;font-weight:800;color:#ef7c8e">Ver todas</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 16px -12px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#ffe1c9;display:flex;align-items:center;justify-content:center;font-size:20px">🎂</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Pastel Frida · 20p</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Marisol G. · 11:30</div></div>
+                  <div style="text-align:right"><div style="font-weight:800;font-size:14px">$680</div><div style="font-size:10px;font-weight:800;color:#c78a3b;background:#fbeecb;border-radius:20px;padding:2px 8px;margin-top:3px">Apartado</div></div>
+                </div>
+                <div style="background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 16px -12px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#efe6f7;display:flex;align-items:center;justify-content:center;font-size:20px">🧁</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Cupcakes x24</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Bruno T. · 16:00</div></div>
+                  <div style="text-align:right"><div style="font-weight:800;font-size:14px">$420</div><div style="font-size:10px;font-weight:800;color:#7f9663;background:#e9f2df;border-radius:20px;padding:2px 8px;margin-top:3px">Pagado</div></div>
+                </div>
+              </div>
+            </div>
+            <!-- bottom nav -->
+            <div style="position:absolute;left:0;right:0;bottom:0;height:88px;background:#fff;border-top:1px solid rgba(74,52,46,.06);display:flex;align-items:center;justify-content:space-around;padding:0 20px 18px;box-shadow:0 -8px 24px -16px rgba(74,52,46,.4)">
+              <div style="text-align:center;color:#ef7c8e"><div style="font-size:20px">🏠</div><div style="font-size:10px;font-weight:800">Inicio</div></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">📅</div><div style="font-size:10px;font-weight:800">Agenda</div></div>
+              <div style="width:60px"></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">🍰</div><div style="font-size:10px;font-weight:800">Recetas</div></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">🧾</div><div style="font-size:10px;font-weight:800">Precios</div></div>
+              <div style="position:absolute;left:50%;top:-22px;transform:translateX(-50%);width:60px;height:60px;border-radius:22px;background:#ef7c8e;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;box-shadow:0 12px 22px -8px rgba(239,124,142,.8)">＋</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1b — Bento (bloques organizados) ============ -->
+    <div class="dv-opt" id="1b">
+      <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a><span><b>Bento.</b> Todo el día en una cuadrícula de bloques de color — denso pero muy claro, cada dato en su casilla.</span></div>
+      <div class="dv-card" style="width:auto;background:transparent;border:none;box-shadow:none;padding:0">
+        <div class="ph">
+          <div class="ph-scr" style="background:#fbf3ea;color:#4a342e;font-family:'Nunito',sans-serif">
+            <div class="sb" style="color:#4a342e"><span>9:41</span><span class="sb-r">📶 🔋</span></div>
+            <div style="padding:12px 20px 120px;height:100%;box-sizing:border-box;overflow:hidden">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin:6px 2px 16px">
+                <div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:22px;line-height:1">Hoy 🍰</div>
+                  <div style="font-size:12px;color:rgba(74,52,46,.55);font-weight:800">Martes 13 de agosto</div>
+                </div>
+                <div style="width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#ffc7a8,#ef7c8e);display:flex;align-items:center;justify-content:center;font-size:22px">🧁</div>
+              </div>
+              <!-- bento grid -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(96px,auto);gap:12px">
+                <!-- big cotizar -->
+                <div style="grid-column:span 2;background:#ef7c8e;border-radius:24px;padding:20px 22px;color:#fff;display:flex;align-items:center;justify-content:space-between;box-shadow:0 14px 26px -12px rgba(239,124,142,.7)">
+                  <div><div style="font-family:'Fredoka';font-weight:600;font-size:20px;line-height:1.1">Cotizar<br>un pastel</div><div style="font-size:12px;font-weight:700;opacity:.85;margin-top:6px">Receta + tamaño = precio ✨</div></div>
+                  <div style="width:52px;height:52px;border-radius:18px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:26px">＋</div>
+                </div>
+                <div style="background:#ffe1c9;border-radius:22px;padding:16px">
+                  <div style="font-size:22px">🎂</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:30px;line-height:1;margin-top:6px">3</div>
+                  <div style="font-size:12px;font-weight:800;color:#b25b52">Entregas hoy</div>
+                </div>
+                <div style="background:#e9f2df;border-radius:22px;padding:16px">
+                  <div style="font-size:22px">💰</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:26px;line-height:1;margin-top:6px">$1,240</div>
+                  <div style="font-size:12px;font-weight:800;color:#7f9663">Por cobrar</div>
+                </div>
+                <div style="background:#efe6f7;border-radius:22px;padding:16px">
+                  <div style="font-size:22px">📦</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:30px;line-height:1;margin-top:6px">8</div>
+                  <div style="font-size:12px;font-weight:800;color:#9179b8">Esta semana</div>
+                </div>
+                <div style="background:#d9edf2;border-radius:22px;padding:16px">
+                  <div style="font-size:22px">📄</div>
+                  <div style="font-weight:800;font-size:14px;line-height:1.2;margin-top:8px">Generar<br>PDF</div>
+                </div>
+              </div>
+              <!-- next delivery strip -->
+              <div style="margin-top:14px;background:#fff;border-radius:22px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 18px -12px rgba(74,52,46,.4)">
+                <div style="width:44px;height:44px;border-radius:14px;background:#ffe1c9;display:flex;align-items:center;justify-content:center;font-size:22px">🎂</div>
+                <div style="flex:1"><div style="font-size:11px;font-weight:800;color:#ef7c8e">PRÓXIMA · 11:30</div><div style="font-weight:800;font-size:14px">Pastel Frida · Marisol G.</div></div>
+                <div style="width:38px;height:38px;border-radius:12px;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:18px">💬</div>
+              </div>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:0;height:88px;background:#fff;border-top:1px solid rgba(74,52,46,.06);display:flex;align-items:center;justify-content:space-around;padding:0 20px 18px">
+              <div style="text-align:center;color:#ef7c8e"><div style="font-size:20px">🏠</div><div style="font-size:10px;font-weight:800">Inicio</div></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">📅</div><div style="font-size:10px;font-weight:800">Agenda</div></div>
+              <div style="width:60px"></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">🍰</div><div style="font-size:10px;font-weight:800">Recetas</div></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">🧾</div><div style="font-size:10px;font-weight:800">Precios</div></div>
+              <div style="position:absolute;left:50%;top:-22px;transform:translateX(-50%);width:60px;height:60px;border-radius:22px;background:#ef7c8e;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;box-shadow:0 12px 22px -8px rgba(239,124,142,.8)">＋</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1c — Vitrina (expresiva, más wow) ============ -->
+    <div class="dv-opt" id="1c">
+      <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a><span><b>Vitrina.</b> Encabezado de color con borde ondulado y tarjeta que "sube" — la más expresiva y con más sorpresa.</span></div>
+      <div class="dv-card" style="width:auto;background:transparent;border:none;box-shadow:none;padding:0">
+        <div class="ph">
+          <div class="ph-scr" style="background:#fdf5ec;color:#4a342e;font-family:'Nunito',sans-serif">
+            <!-- colored header -->
+            <div style="position:absolute;top:0;left:0;right:0;height:270px;background:linear-gradient(150deg,#ef7c8e,#ffb08a)"></div>
+            <svg viewBox="0 0 390 40" preserveAspectRatio="none" style="position:absolute;top:250px;left:0;width:100%;height:40px" xmlns="http://www.w3.org/2000/svg"><path d="M0 40 C 32 6, 65 6, 97 24 S 162 42, 195 24 S 260 6, 292 24 S 358 42, 390 20 L390 40 Z" fill="#fdf5ec"/></svg>
+            <div class="sb" style="color:#fff;position:relative"><span>9:41</span><span class="sb-r">📶 🔋</span></div>
+            <div style="position:relative;padding:6px 24px 0">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin:8px 0 18px">
+                <div style="color:#fff">
+                  <div style="font-size:13px;font-weight:800;opacity:.9">Martes 13 · Buen día ☀️</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:26px;line-height:1.05">Azucena's<br>Cake Studio</div>
+                </div>
+                <div style="width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.25);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;font-size:24px">🧁</div>
+              </div>
+              <!-- big today number -->
+              <div style="display:flex;align-items:flex-end;gap:14px;color:#fff;padding-bottom:6px">
+                <div style="font-family:'Fredoka';font-weight:700;font-size:76px;line-height:.85">3</div>
+                <div style="padding-bottom:10px"><div style="font-family:'Fredoka';font-weight:500;font-size:20px;line-height:1">entregas</div><div style="font-size:13px;font-weight:800;opacity:.9">para hoy 🎉</div></div>
+              </div>
+            </div>
+            <!-- floating card content -->
+            <div style="position:relative;padding:10px 22px 120px;height:100%;box-sizing:border-box;overflow:hidden">
+              <!-- quick pills scroll -->
+              <div style="display:flex;gap:12px;margin:6px 0 16px">
+                <div style="flex:1;background:#ef7c8e;border-radius:22px;padding:16px;color:#fff;box-shadow:0 14px 24px -12px rgba(239,124,142,.8)"><div style="font-size:24px">✏️</div><div style="font-family:'Fredoka';font-weight:600;font-size:15px;margin-top:6px;line-height:1.1">Cotizar</div></div>
+                <div style="flex:1;background:#fff;border-radius:22px;padding:16px;box-shadow:0 10px 20px -14px rgba(74,52,46,.5)"><div style="font-size:24px">📄</div><div style="font-family:'Fredoka';font-weight:600;font-size:15px;margin-top:6px;line-height:1.1">PDF</div></div>
+                <div style="flex:1;background:#fff;border-radius:22px;padding:16px;box-shadow:0 10px 20px -14px rgba(74,52,46,.5)"><div style="font-size:24px">💬</div><div style="font-family:'Fredoka';font-weight:600;font-size:15px;margin-top:6px;line-height:1.1">Ticket</div></div>
+              </div>
+              <!-- money row -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div style="background:#e9f2df;border-radius:20px;padding:14px 16px"><div style="font-size:12px;font-weight:800;color:#7f9663">Por cobrar 💰</div><div style="font-family:'Fredoka';font-weight:600;font-size:24px">$1,240</div></div>
+                <div style="background:#efe6f7;border-radius:20px;padding:14px 16px"><div style="font-size:12px;font-weight:800;color:#9179b8">Semana 📦</div><div style="font-family:'Fredoka';font-weight:600;font-size:24px">8 pedidos</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin:20px 2px 10px">
+                <div style="font-family:'Fredoka';font-weight:600;font-size:16px">Entregas de hoy</div>
+                <div style="font-size:12px;font-weight:800;color:#ef7c8e">Ver todas</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 16px -12px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#ffe1c9;display:flex;align-items:center;justify-content:center;font-size:20px">🎂</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Pastel Frida · 20p</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Marisol G. · 11:30</div></div>
+                  <div style="font-size:10px;font-weight:800;color:#c78a3b;background:#fbeecb;border-radius:20px;padding:3px 9px">Apartado</div>
+                </div>
+                <div style="background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 16px -12px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#efe6f7;display:flex;align-items:center;justify-content:center;font-size:20px">🧁</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Cupcakes x24</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Bruno T. · 16:00</div></div>
+                  <div style="font-size:10px;font-weight:800;color:#7f9663;background:#e9f2df;border-radius:20px;padding:3px 9px">Pagado</div>
+                </div>
+              </div>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:0;height:88px;background:#fff;border-top:1px solid rgba(74,52,46,.06);display:flex;align-items:center;justify-content:space-around;padding:0 20px 18px">
+              <div style="text-align:center;color:#ef7c8e"><div style="font-size:20px">🏠</div><div style="font-size:10px;font-weight:800">Inicio</div></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">📅</div><div style="font-size:10px;font-weight:800">Agenda</div></div>
+              <div style="width:60px"></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">🍰</div><div style="font-size:10px;font-weight:800">Recetas</div></div>
+              <div style="text-align:center;color:rgba(74,52,46,.4)"><div style="font-size:20px">🧾</div><div style="font-size:10px;font-weight:800">Precios</div></div>
+              <div style="position:absolute;left:50%;top:-22px;transform:translateX(-50%);width:60px;height:60px;border-radius:22px;background:#ef7c8e;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;box-shadow:0 12px 22px -8px rgba(239,124,142,.8)">＋</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="dv-next">Prueba escribir: "sigamos con <a class="dv-oid" href="#1c">1c</a>, extiéndelo a las demás pantallas" · "mezcla el encabezado de <a class="dv-oid" href="#1c">1c</a> con las tarjetas de <a class="dv-oid" href="#1a">1a</a>" · "muéstrame la versión de escritorio" · "más opciones"</p>
+</section>
+
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#efe7dd;font-family:'Nunito',system-ui,sans-serif;display:flex;justify-content:center;align-items:flex-start;padding:40px 0}
+  *{box-sizing:border-box}
+  .ph{width:390px;border-radius:46px;background:#3a2a24;padding:12px;box-shadow:0 40px 70px -24px rgba(74,52,46,.5),0 10px 24px -12px rgba(74,52,46,.35)}
+  .ph-scr{border-radius:36px;overflow:hidden;position:relative;height:812px;background:#fdf5ec}
+  .scr::-webkit-scrollbar{display:none}
+  .scr{scrollbar-width:none}
+  a{color:#ef7c8e}
+</style>
+</helmet>
+
+<div class="ph">
+  <div class="ph-scr">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column">
+      <div class="scr" style="flex:1;overflow-y:auto;position:relative">
+
+        <!-- ================= INICIO ================= -->
+        <sc-if value="{{ isInicio }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;color:#4a342e;min-height:100%">
+            <div style="position:absolute;top:0;left:0;right:0;height:270px;background:linear-gradient(150deg,#ef7c8e,#ffb08a)"></div>
+            <svg viewBox="0 0 390 40" preserveAspectRatio="none" style="position:absolute;top:250px;left:0;width:100%;height:40px" xmlns="http://www.w3.org/2000/svg"><path d="M0 40 C 32 6, 65 6, 97 24 S 162 42, 195 24 S 260 6, 292 24 S 358 42, 390 20 L390 40 Z" fill="#fdf5ec"></path></svg>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 26px 4px;font-weight:800;font-size:14px;color:#fff;position:relative"><span>9:41</span><span>📶 🔋</span></div>
+            <div style="position:relative;padding:6px 24px 0">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin:8px 0 18px">
+                <div style="color:#fff">
+                  <div style="font-size:13px;font-weight:800;opacity:.9">Martes 13 · Buen día ☀️</div>
+                  <div style="font-family:'Fredoka';font-weight:600;font-size:26px;line-height:1.05">Azucena's<br>Cake Studio</div>
+                </div>
+                <div style="width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:24px">🧁</div>
+              </div>
+              <div style="display:flex;align-items:flex-end;gap:14px;color:#fff;padding-bottom:6px">
+                <div style="font-family:'Fredoka';font-weight:700;font-size:76px;line-height:.85">3</div>
+                <div style="padding-bottom:10px"><div style="font-family:'Fredoka';font-weight:500;font-size:20px;line-height:1">entregas</div><div style="font-size:13px;font-weight:800;opacity:.9">para hoy 🎉</div></div>
+              </div>
+            </div>
+            <div style="position:relative;padding:10px 22px 24px">
+              <div style="display:flex;gap:12px;margin:6px 0 16px">
+                <div onClick="{{ goCotizar }}" style="cursor:pointer;flex:1;background:#ef7c8e;border-radius:22px;padding:16px;color:#fff;box-shadow:0 14px 24px -12px rgba(239,124,142,.8)"><div style="font-size:24px">✏️</div><div style="font-family:'Fredoka';font-weight:600;font-size:15px;margin-top:6px;line-height:1.1">Cotizar</div></div>
+                <div style="flex:1;background:#fff;border-radius:22px;padding:16px;box-shadow:0 10px 20px -14px rgba(74,52,46,.5)"><div style="font-size:24px">📄</div><div style="font-family:'Fredoka';font-weight:600;font-size:15px;margin-top:6px;line-height:1.1">PDF</div></div>
+                <div style="flex:1;background:#fff;border-radius:22px;padding:16px;box-shadow:0 10px 20px -14px rgba(74,52,46,.5)"><div style="font-size:24px">💬</div><div style="font-family:'Fredoka';font-weight:600;font-size:15px;margin-top:6px;line-height:1.1">Ticket</div></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div style="background:#e9f2df;border-radius:20px;padding:14px 16px"><div style="font-size:12px;font-weight:800;color:#7f9663">Por cobrar 💰</div><div style="font-family:'Fredoka';font-weight:600;font-size:24px">$1,240</div></div>
+                <div onClick="{{ goAgenda }}" style="cursor:pointer;background:#efe6f7;border-radius:20px;padding:14px 16px"><div style="font-size:12px;font-weight:800;color:#9179b8">Semana 📦</div><div style="font-family:'Fredoka';font-weight:600;font-size:24px">8 pedidos</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin:20px 2px 10px">
+                <div style="font-family:'Fredoka';font-weight:600;font-size:16px">Entregas de hoy</div>
+                <div onClick="{{ goAgenda }}" style="cursor:pointer;font-size:12px;font-weight:800;color:#ef7c8e">Ver todas</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 16px -12px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#ffe1c9;display:flex;align-items:center;justify-content:center;font-size:20px">🎂</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Pastel Frida · 20p</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Marisol G. · 11:30</div></div>
+                  <div style="font-size:10px;font-weight:800;color:#c78a3b;background:#fbeecb;border-radius:20px;padding:3px 9px">Apartado</div>
+                </div>
+                <div style="background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 16px -12px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#efe6f7;display:flex;align-items:center;justify-content:center;font-size:20px">🧁</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Cupcakes x24</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Bruno T. · 16:00</div></div>
+                  <div style="font-size:10px;font-weight:800;color:#7f9663;background:#e9f2df;border-radius:20px;padding:3px 9px">Pagado</div>
+                </div>
+                <div style="background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 16px -12px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#f7d9e0;display:flex;align-items:center;justify-content:center;font-size:20px">🎂</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Número 30 · Fondant</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Diana R. · 18:30</div></div>
+                  <div style="font-size:10px;font-weight:800;color:#b25b52;background:#ffe1e1;border-radius:20px;padding:3px 9px">Pendiente</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ================= COTIZAR ================= -->
+        <sc-if value="{{ isCotizar }}">
+          <div style="color:#4a342e;padding:0 0 24px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 26px 4px;font-weight:800;font-size:14px"><span>9:41</span><span>📶 🔋</span></div>
+            <div style="padding:6px 22px 0">
+              <div style="display:flex;align-items:center;gap:12px;margin:6px 0 4px">
+                <div onClick="{{ goInicio }}" style="cursor:pointer;width:38px;height:38px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 6px 14px -10px rgba(74,52,46,.5)">‹</div>
+                <div style="font-family:'Fredoka';font-weight:600;font-size:22px">Nueva cotización</div>
+              </div>
+              <!-- step chips -->
+              <div style="display:flex;gap:8px;margin:16px 0 4px">
+                <div style="flex:1;text-align:center;background:#ef7c8e;color:#fff;border-radius:14px;padding:8px 4px;font-size:11px;font-weight:800">1 Cliente</div>
+                <div style="flex:1;text-align:center;background:#ffe1c9;color:#b25b52;border-radius:14px;padding:8px 4px;font-size:11px;font-weight:800">2 Pastel</div>
+                <div style="flex:1;text-align:center;background:#fff;color:rgba(74,52,46,.45);border-radius:14px;padding:8px 4px;font-size:11px;font-weight:800">3 Costeo</div>
+                <div style="flex:1;text-align:center;background:#fff;color:rgba(74,52,46,.45);border-radius:14px;padding:8px 4px;font-size:11px;font-weight:800">$ Total</div>
+              </div>
+              <!-- card: cliente -->
+              <div style="background:#fff;border-radius:24px;padding:18px;margin-top:14px;box-shadow:0 10px 24px -16px rgba(74,52,46,.45)">
+                <div style="font-family:'Fredoka';font-weight:600;font-size:16px;margin-bottom:12px">👤 Cliente y evento</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                  <div style="grid-column:span 2"><div style="font-size:11px;font-weight:800;color:rgba(74,52,46,.5);margin-bottom:4px">NOMBRE</div><div style="background:#faf3ec;border-radius:12px;padding:11px 13px;font-weight:700;font-size:13px">Marisol González</div></div>
+                  <div><div style="font-size:11px;font-weight:800;color:rgba(74,52,46,.5);margin-bottom:4px">TELÉFONO</div><div style="background:#faf3ec;border-radius:12px;padding:11px 13px;font-weight:700;font-size:13px">55 1234 5678</div></div>
+                  <div><div style="font-size:11px;font-weight:800;color:rgba(74,52,46,.5);margin-bottom:4px">EVENTO</div><div style="background:#faf3ec;border-radius:12px;padding:11px 13px;font-weight:700;font-size:13px">13 ago · 11:30</div></div>
+                </div>
+              </div>
+              <!-- card: pastel -->
+              <div style="background:#fff;border-radius:24px;padding:18px;margin-top:14px;box-shadow:0 10px 24px -16px rgba(74,52,46,.45)">
+                <div style="font-family:'Fredoka';font-weight:600;font-size:16px;margin-bottom:6px">🎂 El pastel</div>
+                <div style="font-size:12px;color:rgba(74,52,46,.55);font-weight:700;margin-bottom:12px">Elige receta y tamaño — sabores y precio se llenan solos ✨</div>
+                <div style="background:#fbeef1;border:2px solid #f2c4ce;border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                  <div style="font-size:22px">🍫</div><div style="flex:1"><div style="font-weight:800;font-size:14px">Chocoavellana</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Receta base guardada</div></div><div style="font-size:12px;font-weight:800;color:#ef7c8e">Cambiar</div>
+                </div>
+                <div style="font-size:11px;font-weight:800;color:rgba(74,52,46,.5);margin-bottom:6px">TAMAÑO</div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <div style="background:#faf3ec;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:800;color:rgba(74,52,46,.55)">Petit</div>
+                  <div style="background:#faf3ec;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:800;color:rgba(74,52,46,.55)">Chico</div>
+                  <div style="background:#ef7c8e;color:#fff;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:800">Mediano · 20p</div>
+                  <div style="background:#faf3ec;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:800;color:rgba(74,52,46,.55)">Grande</div>
+                  <div style="background:#faf3ec;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:800;color:rgba(74,52,46,.55)">Bento</div>
+                </div>
+              </div>
+              <!-- card: extras -->
+              <div style="background:#fff;border-radius:24px;padding:18px;margin-top:14px;box-shadow:0 10px 24px -16px rgba(74,52,46,.45)">
+                <div style="font-family:'Fredoka';font-weight:600;font-size:16px;margin-bottom:12px">🎀 Extras de diseño</div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <div style="background:#e9f2df;color:#5e7346;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:800">Flores +$120</div>
+                  <div style="background:#efe6f7;color:#7a5fa8;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:800">Topper +$80</div>
+                  <div style="background:#faf3ec;color:rgba(74,52,46,.5);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:800">+ Añadir</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ================= AGENDA ================= -->
+        <sc-if value="{{ isAgenda }}">
+          <div style="color:#4a342e;padding:0 0 24px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 26px 4px;font-weight:800;font-size:14px"><span>9:41</span><span>📶 🔋</span></div>
+            <div style="padding:6px 22px 0">
+              <div style="font-family:'Fredoka';font-weight:600;font-size:24px;margin:6px 0 4px">📅 Agenda de pedidos</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+                <div style="background:#ffe1c9;border-radius:18px;padding:12px 14px"><div style="font-family:'Fredoka';font-weight:600;font-size:24px">3</div><div style="font-size:11px;font-weight:800;color:#b25b52">Entregas hoy</div></div>
+                <div style="background:#e9f2df;border-radius:18px;padding:12px 14px"><div style="font-family:'Fredoka';font-weight:600;font-size:24px">8</div><div style="font-size:11px;font-weight:800;color:#7f9663">Esta semana</div></div>
+                <div style="background:#f7d9e0;border-radius:18px;padding:12px 14px"><div style="font-family:'Fredoka';font-weight:600;font-size:24px">$1,240</div><div style="font-size:11px;font-weight:800;color:#b25b52">Por cobrar</div></div>
+                <div style="background:#efe6f7;border-radius:18px;padding:12px 14px"><div style="font-family:'Fredoka';font-weight:600;font-size:24px">5</div><div style="font-size:11px;font-weight:800;color:#9179b8">Activos</div></div>
+              </div>
+              <div style="display:flex;gap:8px;margin:16px 0 14px;overflow-x:auto">
+                <div style="flex:none;background:#ef7c8e;color:#fff;border-radius:20px;padding:8px 16px;font-size:12px;font-weight:800">Activos</div>
+                <div style="flex:none;background:#fff;color:rgba(74,52,46,.5);border-radius:20px;padding:8px 16px;font-size:12px;font-weight:800">Todos</div>
+                <div style="flex:none;background:#fff;color:rgba(74,52,46,.5);border-radius:20px;padding:8px 16px;font-size:12px;font-weight:800">Apartados</div>
+                <div style="flex:none;background:#fff;color:rgba(74,52,46,.5);border-radius:20px;padding:8px 16px;font-size:12px;font-weight:800">Entregados</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="background:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 8px 20px -14px rgba(74,52,46,.4)">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div style="width:44px;height:44px;border-radius:14px;background:#ffe1c9;display:flex;align-items:center;justify-content:center;font-size:22px">🎂</div>
+                    <div style="flex:1"><div style="font-weight:800;font-size:15px">Pastel Frida · 20p</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Marisol G. · Hoy 11:30</div></div>
+                    <div style="text-align:right"><div style="font-family:'Fredoka';font-weight:600;font-size:17px">$680</div><div style="font-size:10px;font-weight:800;color:#c78a3b">Resta $340</div></div>
+                  </div>
+                  <div style="display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(74,52,46,.07)">
+                    <div style="flex:1;text-align:center;background:#25d366;color:#fff;border-radius:12px;padding:8px;font-size:12px;font-weight:800">💬 WhatsApp</div>
+                    <div style="flex:1;text-align:center;background:#faf3ec;border-radius:12px;padding:8px;font-size:12px;font-weight:800">📄 PDF</div>
+                    <div style="flex:1;text-align:center;background:#faf3ec;border-radius:12px;padding:8px;font-size:12px;font-weight:800">💵 Cobrar</div>
+                  </div>
+                </div>
+                <div style="background:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 8px 20px -14px rgba(74,52,46,.4)">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div style="width:44px;height:44px;border-radius:14px;background:#efe6f7;display:flex;align-items:center;justify-content:center;font-size:22px">🧁</div>
+                    <div style="flex:1"><div style="font-weight:800;font-size:15px">Cupcakes x24</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Bruno T. · Hoy 16:00</div></div>
+                    <div style="text-align:right"><div style="font-family:'Fredoka';font-weight:600;font-size:17px">$420</div><div style="font-size:10px;font-weight:800;color:#7f9663">Pagado ✓</div></div>
+                  </div>
+                </div>
+                <div style="background:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 8px 20px -14px rgba(74,52,46,.4)">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div style="width:44px;height:44px;border-radius:14px;background:#d9edf2;display:flex;align-items:center;justify-content:center;font-size:22px">🎂</div>
+                    <div style="flex:1"><div style="font-weight:800;font-size:15px">Boda · 3 pisos</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">Diana R. · Sáb 18:00</div></div>
+                    <div style="text-align:right"><div style="font-family:'Fredoka';font-weight:600;font-size:17px">$2,400</div><div style="font-size:10px;font-weight:800;color:#c78a3b">Apartado</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ================= PRECIOS ================= -->
+        <sc-if value="{{ isPrecios }}">
+          <div style="color:#4a342e;padding:0 0 24px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 26px 4px;font-weight:800;font-size:14px"><span>9:41</span><span>📶 🔋</span></div>
+            <div style="padding:6px 22px 0">
+              <div style="font-family:'Fredoka';font-weight:600;font-size:24px;margin:6px 0 4px">🧾 Mis precios</div>
+              <div style="font-size:12px;color:rgba(74,52,46,.55);font-weight:700">Cuánto te cuesta comprar — la app calcula el costo por gramo o pieza.</div>
+              <div style="background:#faf3ec;border-radius:16px;padding:12px 14px;margin-top:14px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px;color:rgba(74,52,46,.5)">🔍 Buscar insumo…</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+                <div style="background:#fff;border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 20px -16px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#ffe9c7;display:flex;align-items:center;justify-content:center;font-size:20px">🧈</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Mantequilla</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">$186 / 1000 g</div></div>
+                  <div style="background:#faf3ec;border-radius:12px;padding:8px 12px;font-family:'Fredoka';font-weight:600;font-size:14px">$0.19<span style="font-size:10px;color:rgba(74,52,46,.5)">/g</span></div>
+                </div>
+                <div style="background:#fff;border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 20px -16px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#f6ead2;display:flex;align-items:center;justify-content:center;font-size:20px">🌾</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Harina</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">$32 / 1000 g</div></div>
+                  <div style="background:#faf3ec;border-radius:12px;padding:8px 12px;font-family:'Fredoka';font-weight:600;font-size:14px">$0.03<span style="font-size:10px;color:rgba(74,52,46,.5)">/g</span></div>
+                </div>
+                <div style="background:#fff;border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 20px -16px rgba(74,52,46,.4)">
+                  <div style="width:40px;height:40px;border-radius:12px;background:#f7d9e0;display:flex;align-items:center;justify-content:center;font-size:20px">🥚</div>
+                  <div style="flex:1"><div style="font-weight:800;font-size:14px">Huevo</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">$62 / 30 pz</div></div>
+                  <div style="background:#faf3ec;border-radius:12px;padding:8px 12px;font-family:'Fredoka';font-weight:600;font-size:14px">$2.07<span style="font-size:10px;color:rgba(74,52,46,.5)">/pz</span></div>
+                </div>
+              </div>
+              <div style="font-family:'Fredoka';font-weight:600;font-size:16px;margin:20px 2px 10px">🎀 Extras de diseño</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="background:#fff;border-radius:18px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 20px -16px rgba(74,52,46,.4)"><div style="font-weight:800;font-size:14px">Flores naturales</div><div style="font-family:'Fredoka';font-weight:600">$120</div></div>
+                <div style="background:#fff;border-radius:18px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 20px -16px rgba(74,52,46,.4)"><div style="font-weight:800;font-size:14px">Topper personalizado</div><div style="font-family:'Fredoka';font-weight:600">$80</div></div>
+              </div>
+              <div style="background:#ef7c8e;color:#fff;border-radius:18px;padding:15px;text-align:center;font-family:'Fredoka';font-weight:600;font-size:15px;margin-top:18px;box-shadow:0 12px 22px -12px rgba(239,124,142,.7)">💾 Guardar inventario</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ================= RECETAS ================= -->
+        <sc-if value="{{ isRecetas }}">
+          <div style="color:#4a342e;padding:0 0 24px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 26px 4px;font-weight:800;font-size:14px"><span>9:41</span><span>📶 🔋</span></div>
+            <div style="padding:6px 22px 0">
+              <div style="font-family:'Fredoka';font-weight:600;font-size:24px;margin:6px 0 4px">🍰 Mis recetas</div>
+              <div style="font-size:12px;color:rgba(74,52,46,.55);font-weight:700">Guarda una receta desde el cotizador y reutilízala al instante.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+                <div style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 20px -16px rgba(74,52,46,.4)"><div style="height:76px;background:linear-gradient(135deg,#ffd9c0,#ef7c8e);display:flex;align-items:center;justify-content:center;font-size:32px">🍫</div><div style="padding:12px 14px"><div style="font-weight:800;font-size:14px">Chocoavellana</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">6 ingredientes</div></div></div>
+                <div style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 20px -16px rgba(74,52,46,.4)"><div style="height:76px;background:linear-gradient(135deg,#e9f2df,#bfe3d0);display:flex;align-items:center;justify-content:center;font-size:32px">🍋</div><div style="padding:12px 14px"><div style="font-weight:800;font-size:14px">Limón & mora</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">7 ingredientes</div></div></div>
+                <div style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 20px -16px rgba(74,52,46,.4)"><div style="height:76px;background:linear-gradient(135deg,#efe6f7,#d9cbf0);display:flex;align-items:center;justify-content:center;font-size:32px">🫐</div><div style="padding:12px 14px"><div style="font-weight:800;font-size:14px">Red velvet</div><div style="font-size:11px;color:rgba(74,52,46,.55);font-weight:700">8 ingredientes</div></div></div>
+                <div onClick="{{ goCotizar }}" style="cursor:pointer;border:2px dashed #f2c4ce;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#ef7c8e;font-weight:800;font-size:13px;min-height:130px"><div style="font-size:30px">＋</div>Nueva receta</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+
+      <!-- ================= BOTTOM NAV ================= -->
+      <div style="position:relative;height:88px;background:#fff;border-top:1px solid rgba(74,52,46,.06);display:flex;align-items:center;justify-content:space-around;padding:0 20px 18px;box-shadow:0 -8px 24px -16px rgba(74,52,46,.4);flex:none">
+        <div onClick="{{ goInicio }}" style="cursor:pointer;text-align:center;color:{{ cInicio }}"><div style="font-size:20px">🏠</div><div style="font-size:10px;font-weight:800">Inicio</div></div>
+        <div onClick="{{ goAgenda }}" style="cursor:pointer;text-align:center;color:{{ cAgenda }}"><div style="font-size:20px">📅</div><div style="font-size:10px;font-weight:800">Agenda</div></div>
+        <div style="width:60px"></div>
+        <div onClick="{{ goRecetas }}" style="cursor:pointer;text-align:center;color:{{ cRecetas }}"><div style="font-size:20px">🍰</div><div style="font-size:10px;font-weight:800">Recetas</div></div>
+        <div onClick="{{ goPrecios }}" style="cursor:pointer;text-align:center;color:{{ cPrecios }}"><div style="font-size:20px">🧾</div><div style="font-size:10px;font-weight:800">Precios</div></div>
+        <div onClick="{{ goCotizar }}" style="cursor:pointer;position:absolute;left:50%;top:-22px;transform:translateX(-50%);width:60px;height:60px;border-radius:22px;background:#ef7c8e;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;box-shadow:0 12px 22px -8px rgba(239,124,142,.8)">＋</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { screen: 'inicio' };
+  renderVals() {
+    const s = this.state.screen;
+    const go = (name) => () => this.setState({ screen: name });
+    const on = '#ef7c8e', off = 'rgba(74,52,46,.4)';
+    return {
+      isInicio: s === 'inicio',
+      isCotizar: s === 'cotizar',
+      isAgenda: s === 'agenda',
+      isPrecios: s === 'precios',
+      isRecetas: s === 'recetas',
+      goInicio: go('inicio'),
+      goCotizar: go('cotizar'),
+      goAgenda: go('agenda'),
+      goPrecios: go('precios'),
+      goRecetas: go('recetas'),
+      cInicio: s === 'inicio' ? on : off,
+      cAgenda: s === 'agenda' ? on : off,
+      cRecetas: s === 'recetas' ? on : off,
+      cPrecios: s === 'precios' ? on : off,
+    };
+  }
+}
+</script>
+</body>
+</html>
