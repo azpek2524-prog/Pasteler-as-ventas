@@ -77,7 +77,101 @@
 
         /* ---------- Layout ---------- */
         .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 20px; }
-        main { flex: 1 0 auto; padding: 32px 0 64px; }
+        main { flex: 1 0 auto; padding: 28px 0 56px; }
+
+        /* ---------- Armazón: menú lateral + barra inferior ---------- */
+        .shell { flex: 1 0 auto; display: flex; align-items: stretch; }
+        .sidebar { width: 240px; flex: none; background: #fff; border-right: 1px solid var(--line); display: flex; flex-direction: column; padding: 20px 16px; position: sticky; top: 0; height: 100vh; }
+        .sidebar-brand { display: flex; align-items: center; gap: 11px; padding: 2px 6px 18px; }
+        .sidebar .brand-mark { width: 44px; height: 44px; }
+        .sidebar-cta { width: 100%; justify-content: center; margin-bottom: 16px; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 4px; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 0; background: transparent; border-radius: 14px; font-weight: 700; font-size: 14px; color: var(--ink-soft); font-family: inherit; cursor: pointer; transition: background .15s, color .15s; text-align: left; }
+        .nav-item .icon { font-size: 19px; }
+        .nav-item:hover { background: var(--sage-050); color: var(--sage-700); }
+        .nav-item.is-active { background: var(--sage-050); color: var(--sage-700); }
+        .nav-badge { margin-left: auto; background: var(--sage); color: #fff; font-size: 11px; font-weight: 800; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; }
+        .sidebar-foot { margin-top: auto; padding-top: 16px; }
+        .sidebar-cobrar { background: var(--gold-soft); border-radius: 16px; padding: 14px 16px; }
+        .sc-label { font-size: 12px; font-weight: 800; color: #9A7B34; }
+        .sc-val { display: block; font-family: var(--font-head); font-size: 22px; font-weight: 700; color: #9A7B34; margin-top: 2px; }
+        .sc-sub { font-size: 11.5px; color: var(--ink-faint); }
+        .main-area { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+        .mobile-topbar { display: none; }
+        .bottom-nav { display: none; }
+
+        @media (max-width: 899px) {
+            .sidebar { display: none; }
+            .mobile-topbar { display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,.92); backdrop-filter: saturate(160%) blur(9px); -webkit-backdrop-filter: saturate(160%) blur(9px); border-bottom: 1px solid var(--line); padding: 10px 16px; }
+            .mobile-topbar .brand-mark { width: 34px; height: 34px; }
+            .mobile-topbar .brand-name { font-family: var(--font-head); font-weight: 700; font-size: 18px; letter-spacing: .03em; color: var(--ink); }
+            main { padding: 18px 0 20px; }
+            .bottom-nav { display: flex; position: sticky; bottom: 0; z-index: 30; background: rgba(255,255,255,.95); backdrop-filter: saturate(160%) blur(10px); -webkit-backdrop-filter: saturate(160%) blur(10px); border-top: 1px solid var(--line); padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)); }
+            .bnav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; border: 0; background: transparent; color: var(--ink-faint); font-family: inherit; font-size: 11px; font-weight: 700; padding: 6px 2px; border-radius: 12px; cursor: pointer; position: relative; }
+            .bnav-item .icon { font-size: 22px; }
+            .bnav-item.is-active { color: var(--sage-700); }
+            .bnav-badge { position: absolute; top: 2px; left: 50%; margin-left: 6px; background: var(--sage); color: #fff; font-size: 9px; font-weight: 800; min-width: 15px; height: 15px; padding: 0 4px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; }
+        }
+
+        /* ---------- Inicio (dashboard) ---------- */
+        .dash-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+        .dash-date { font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+        .dash-hi { font-size: 30px; font-weight: 600; margin-top: 2px; }
+        .dash-search { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line-strong); border-radius: 999px; padding: 9px 16px; }
+        .dash-search .icon { color: var(--ink-faint); }
+        .dash-search input { border: 0; outline: none; background: transparent; font-family: inherit; font-size: 14px; color: var(--ink); width: 170px; }
+
+        .stat-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .stat-card { border-radius: var(--radius); padding: 20px 22px; position: relative; overflow: hidden; min-height: 130px; box-shadow: var(--shadow-sm); }
+        .stat-coral { background: linear-gradient(135deg,#ef7c8e,#ffb08a); color: #fff; }
+        .stat-green { background: linear-gradient(135deg,#e9f2df,#bfe3d0); color: var(--ink); }
+        .stat-purple { background: linear-gradient(135deg,#efe6f7,#d9cbf0); color: var(--ink); }
+        .stat-label { font-size: 13px; font-weight: 800; opacity: .95; }
+        .stat-num { font-family: var(--font-head); font-size: 42px; font-weight: 700; line-height: 1.05; margin: 4px 0; }
+        .stat-sub { font-size: 12.5px; opacity: .92; }
+        .stat-ic { font-size: 26px; }
+        .stat-emoji { position: absolute; right: 16px; bottom: 12px; font-size: 44px; filter: drop-shadow(0 4px 6px rgba(0,0,0,.12)); }
+
+        .quick-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 26px; }
+        .quick-card { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px; font-family: inherit; font-weight: 800; font-size: 14.5px; color: var(--ink); cursor: pointer; transition: transform .15s, box-shadow .15s; }
+        .quick-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .quick-card .icon { font-size: 24px; color: var(--sage); }
+        .quick-coral { background: linear-gradient(135deg,#ef7c8e,#ffb08a); color: #fff; border-color: transparent; }
+        .quick-coral .icon { color: #fff; }
+
+        .dash-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+        .dash-panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .dash-panel-head h3 { font-size: 18px; }
+        .dash-row { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 10px; }
+        .dash-row-ic { width: 40px; height: 40px; border-radius: 12px; background: var(--sage-050); display: grid; place-items: center; font-size: 20px; flex: none; }
+        .dash-row-main { flex: 1; min-width: 0; }
+        .dash-row-name { font-weight: 800; font-size: 14px; }
+        .dash-row-sub { font-size: 12px; color: var(--ink-soft); }
+        .dash-row-right { text-align: right; flex: none; }
+        .dash-row-price { font-weight: 800; font-size: 14px; }
+        .dash-tag { font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; margin-top: 2px; display: inline-block; }
+        .dash-tag.t-debe { background: #FBECEA; color: var(--danger); }
+        .dash-tag.t-ok { background: var(--success-bg); color: var(--success); }
+        .reci-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .reci-card { border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--line); cursor: pointer; background: #fff; transition: transform .15s, box-shadow .15s; }
+        .reci-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .reci-top { height: 62px; display: grid; place-items: center; font-size: 30px; }
+        .reci-body { padding: 9px 12px; }
+        .reci-name { font-weight: 800; font-size: 13.5px; }
+        .reci-sub { font-size: 11px; color: var(--ink-soft); }
+        .reci-add { border: 1.5px dashed var(--sage); color: var(--sage-700); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; font-weight: 800; font-size: 13px; background: var(--sage-050); min-height: 116px; }
+        .reci-add .icon { font-size: 22px; }
+
+        @media (max-width: 899px) {
+            .dash-cols { grid-template-columns: 1fr; }
+            .stat-row { grid-template-columns: 1fr 1fr; }
+            .stat-coral { grid-column: 1 / -1; }
+            .quick-row { grid-template-columns: repeat(2,1fr); }
+            .dash-hi { font-size: 25px; }
+            .dash-search { display: none; }
+            .stat-num { font-size: 30px; }
+            .stat-coral .stat-num { font-size: 40px; }
+        }
 
         /* ---------- Header ---------- */
         .site-header {
@@ -534,44 +628,93 @@
 <body>
 
     <!-- ================= HEADER ================= -->
-    <header class="site-header">
-        <div class="container header-inner">
-            <div class="brand">
+    <div class="shell">
+        <!-- ===== Menú lateral (escritorio) ===== -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
                 <div class="brand-mark" id="brand-mark"></div>
                 <div class="brand-text">
                     <div class="brand-name" id="brand-name">PASTELIA</div>
                     <div class="brand-tag" id="brand-tag">Cotizador profesional</div>
                 </div>
             </div>
-            <nav class="tabs" role="tablist">
-                <button id="tab-cotizador" class="tab is-active" onclick="switchTab('cotizador')">
-                    <span data-icon="calculator"></span><span class="tab-label-full">Cotizar</span>
-                </button>
-                <button id="tab-pedidos" class="tab" onclick="switchTab('pedidos')">
-                    <span data-icon="calendar"></span><span class="tab-label-full">Pedidos</span>
-                    <span class="tab-badge hidden" id="tab-pedidos-badge">0</span>
-                </button>
-                <button id="tab-inventario" class="tab" onclick="switchTab('inventario')">
-                    <span data-icon="shopping-bag"></span><span class="tab-label-full">Mis precios</span>
-                </button>
+            <button class="btn btn-primary sidebar-cta" data-tab="cotizador" onclick="switchTab('cotizador')">
+                <span data-icon="plus"></span> Nueva cotización
+            </button>
+            <nav class="sidebar-nav">
+                <button class="nav-item" data-tab="inicio" onclick="switchTab('inicio')"><span data-icon="home"></span> Inicio</button>
+                <button class="nav-item" data-tab="pedidos" onclick="switchTab('pedidos')"><span data-icon="calendar"></span> Agenda de pedidos <span class="nav-badge pedidos-badge hidden">0</span></button>
+                <button class="nav-item" data-tab="cotizador" onclick="switchTab('cotizador')"><span data-icon="calculator"></span> Cotizar</button>
+                <button class="nav-item" data-tab="inventario" onclick="switchTab('inventario')"><span data-icon="shopping-bag"></span> Mis precios</button>
             </nav>
-        </div>
-    </header>
-
-    <main class="container">
-
-        <!-- Barra de bienvenida (se puede cerrar; recuerda la elección) -->
-        <div id="welcome-strip" class="welcome-strip hidden">
-            <div class="ws-steps">
-                <span class="ws-title">✨ Cotiza en segundos:</span>
-                <span class="ws-step"><b>1</b> Carga tus precios una vez</span>
-                <span class="ws-arrow">→</span>
-                <span class="ws-step"><b>2</b> Guarda tus recetas</span>
-                <span class="ws-arrow">→</span>
-                <span class="ws-step"><b>3</b> Receta + tamaño = precio al instante</span>
+            <div class="sidebar-foot">
+                <div class="sidebar-cobrar">
+                    <span class="sc-label">Por cobrar 💰</span>
+                    <span class="sc-val" id="side-cobrar">$0</span>
+                    <span class="sc-sub" id="side-cobrar-sub">0 pedidos con saldo</span>
+                </div>
             </div>
-            <button class="ws-close" onclick="cerrarBienvenida()" title="Cerrar"><span data-icon="x"></span></button>
-        </div>
+        </aside>
+
+        <div class="main-area">
+            <!-- ===== Barra superior (móvil) ===== -->
+            <div class="mobile-topbar">
+                <div class="brand-mark" id="brand-mark-m"></div>
+                <div class="brand-name" id="brand-name-m">PASTELIA</div>
+            </div>
+
+            <main class="container">
+
+        <!-- ================= INICIO (DASHBOARD) ================= -->
+        <section id="section-inicio">
+            <div class="dash-head">
+                <div>
+                    <div class="dash-date" id="dash-date">Hoy</div>
+                    <h2 class="dash-hi" id="dash-hi">¡Hola! 👋</h2>
+                </div>
+                <div class="dash-search">
+                    <span data-icon="search"></span>
+                    <input type="text" placeholder="Buscar pedido, cliente..." onkeydown="dashBuscar(event)">
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-card stat-coral">
+                    <div class="stat-label">Entregas de hoy</div>
+                    <div class="stat-num" id="stat-hoy">0</div>
+                    <div class="stat-sub" id="stat-hoy-sub">Sin entregas hoy</div>
+                    <div class="stat-emoji">🎂</div>
+                </div>
+                <div class="stat-card stat-green">
+                    <div class="stat-ic">📦</div>
+                    <div class="stat-num" id="stat-semana">0</div>
+                    <div class="stat-label">Pedidos esta semana</div>
+                </div>
+                <div class="stat-card stat-purple">
+                    <div class="stat-ic">💵</div>
+                    <div class="stat-num" id="stat-mes">$0</div>
+                    <div class="stat-label">Ventas del mes</div>
+                </div>
+            </div>
+
+            <div class="quick-row">
+                <button class="quick-card quick-coral" onclick="switchTab('cotizador')"><span data-icon="calculator"></span><span>Cotizar</span></button>
+                <button class="quick-card" onclick="switchTab('pedidos')"><span data-icon="calendar"></span><span>Agenda</span></button>
+                <button class="quick-card" onclick="irARecetas()"><span data-icon="book"></span><span>Recetas</span></button>
+                <button class="quick-card" onclick="switchTab('inventario')"><span data-icon="shopping-bag"></span><span>Mis precios</span></button>
+            </div>
+
+            <div class="dash-cols">
+                <div class="dash-panel">
+                    <div class="dash-panel-head"><h3>Próximas entregas</h3><button class="mini-link" onclick="switchTab('pedidos')">Ver agenda</button></div>
+                    <div id="dash-entregas"></div>
+                </div>
+                <div class="dash-panel">
+                    <div class="dash-panel-head"><h3>Recetas favoritas</h3></div>
+                    <div class="reci-grid" id="dash-recetas"></div>
+                </div>
+            </div>
+        </section>
 
         <!-- ================= COTIZADOR ================= -->
         <section id="section-cotizador">
@@ -863,7 +1006,17 @@
             </div>
         </section>
 
-    </main>
+            </main>
+
+            <!-- ===== Barra inferior (móvil) ===== -->
+            <nav class="bottom-nav">
+                <button class="bnav-item" data-tab="inicio" onclick="switchTab('inicio')"><span data-icon="home"></span><span>Inicio</span></button>
+                <button class="bnav-item" data-tab="cotizador" onclick="switchTab('cotizador')"><span data-icon="calculator"></span><span>Cotizar</span></button>
+                <button class="bnav-item" data-tab="pedidos" onclick="switchTab('pedidos')"><span data-icon="calendar"></span><span>Agenda</span><span class="bnav-badge pedidos-badge hidden">0</span></button>
+                <button class="bnav-item" data-tab="inventario" onclick="switchTab('inventario')"><span data-icon="shopping-bag"></span><span>Precios</span></button>
+            </nav>
+        </div><!-- /main-area -->
+    </div><!-- /shell -->
 
     <div id="toast" class="toast"><span data-icon="check"></span><span id="toast-msg">Listo</span></div>
 
@@ -979,7 +1132,8 @@
             'calendar-plus': '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M12 14v4"/><path d="M10 16h4"/>',
             'search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
             'wallet': '<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
-            'inbox': '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>'
+            'inbox': '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
+            'home': '<path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/>'
         };
 
         /* ===================== MARCA DEL PRODUCTO =====================
@@ -987,6 +1141,7 @@
         const BRAND = {
             nombre: "Pastelia",
             tagline: "Cotizador profesional de pasteles",
+            owner: "",
             telefono: "+52 81 0000 0000",
             instagram: "@tupasteleria"
         };
@@ -1103,16 +1258,20 @@
         let accColapsadas = {}; // recuerda qué acordeones están cerrados
 
         function money(n) { return '$' + (Number(n) || 0).toFixed(2); }
+        function moneyCompact(n) { n = Number(n) || 0; return n >= 1000 ? '$' + (n / 1000).toFixed(1).replace('.0', '') + 'k' : '$' + Math.round(n); }
         function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
         /* ===================== INIT ===================== */
         function aplicarMarca() {
+            const nombreUp = BRAND.nombre.toUpperCase();
             document.getElementById('brand-mark').innerHTML = logoSvg('head');
-            document.getElementById('brand-name').innerText = BRAND.nombre.toUpperCase();
+            document.getElementById('brand-name').innerText = nombreUp;
             document.getElementById('brand-tag').innerText = BRAND.tagline;
+            const bmM = document.getElementById('brand-mark-m'); if (bmM) bmM.innerHTML = logoSvg('mob');
+            const bnM = document.getElementById('brand-name-m'); if (bnM) bnM.innerText = nombreUp;
             document.title = BRAND.nombre + ' · ' + BRAND.tagline;
-            document.getElementById('fp-logo').innerHTML = logoSvg('pdf') + '<div class="fp-logo-name">' + esc(BRAND.nombre.toUpperCase()) + '</div>';
-            document.getElementById('fp-brand').innerText = BRAND.nombre.toUpperCase();
+            document.getElementById('fp-logo').innerHTML = logoSvg('pdf') + '<div class="fp-logo-name">' + esc(nombreUp) + '</div>';
+            document.getElementById('fp-brand').innerText = nombreUp;
             document.getElementById('fp-tel-brand').innerText = BRAND.telefono;
             document.getElementById('fp-ig-brand').innerText = BRAND.instagram;
         }
@@ -1130,19 +1289,8 @@
             renderPedidos();
             setupEvents();
             inicializarPedido();
-            iniciarBienvenida();
             calcularTotales();
-        }
-
-        /* ===================== BIENVENIDA ===================== */
-        function iniciarBienvenida() {
-            if (!localStorage.getItem('bakeryWelcomeOk')) {
-                document.getElementById('welcome-strip').classList.remove('hidden');
-            }
-        }
-        function cerrarBienvenida() {
-            localStorage.setItem('bakeryWelcomeOk', '1');
-            document.getElementById('welcome-strip').classList.add('hidden');
+            switchTab('inicio');
         }
 
         function inicializarPedido() {
@@ -1353,22 +1501,109 @@
             calcularTotales();
         }
 
-        /* ===================== TABS ===================== */
+        /* ===================== NAVEGACIÓN ===================== */
+        const SECCIONES = {
+            inicio: 'section-inicio',
+            cotizador: 'section-cotizador',
+            pedidos: 'section-pedidos',
+            inventario: 'section-inventario'
+        };
         function switchTab(tabId) {
-            const map = {
-                cotizador: { btn: 'tab-cotizador', sec: 'section-cotizador' },
-                pedidos: { btn: 'tab-pedidos', sec: 'section-pedidos' },
-                inventario: { btn: 'tab-inventario', sec: 'section-inventario' }
-            };
-            for (const k in map) {
-                document.getElementById(map[k].btn).classList.remove('is-active');
-                document.getElementById(map[k].sec).classList.add('hidden');
+            for (const k in SECCIONES) {
+                const s = document.getElementById(SECCIONES[k]);
+                if (s) s.classList.add('hidden');
             }
-            document.getElementById(map[tabId].btn).classList.add('is-active');
-            document.getElementById(map[tabId].sec).classList.remove('hidden');
+            const target = document.getElementById(SECCIONES[tabId]);
+            if (target) target.classList.remove('hidden');
+            // Estado activo en menú lateral y barra inferior
+            document.querySelectorAll('.nav-item, .bnav-item').forEach(el =>
+                el.classList.toggle('is-active', el.getAttribute('data-tab') === tabId));
+            if (tabId === 'inicio') { renderInicio(); }
             if (tabId === 'cotizador') { renderizarCotizador(); calcularTotales(); }
             if (tabId === 'pedidos') { renderPedidos(); }
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function irARecetas() {
+            switchTab('inventario');
+            setTimeout(() => { const el = document.getElementById('recetas-inv'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 120);
+        }
+
+        function usarRecetaDesdeInicio(id) {
+            switchTab('cotizador');
+            const sel = document.getElementById('receta-select');
+            if (sel) sel.value = id;
+            seleccionarReceta(id);
+        }
+
+        function dashBuscar(e) {
+            if (e.key === 'Enter') {
+                const q = e.target.value;
+                switchTab('pedidos');
+                const b = document.getElementById('ped-buscar');
+                if (b) { b.value = q; renderPedidos(); }
+            }
+        }
+
+        /* ===================== INICIO (DASHBOARD) ===================== */
+        function renderInicio() {
+            const now = new Date();
+            const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+            const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+            const dia = dias[now.getDay()];
+            document.getElementById('dash-date').innerText = `${dia.charAt(0).toUpperCase()}${dia.slice(1)} ${now.getDate()} de ${meses[now.getMonth()]}`;
+            document.getElementById('dash-hi').innerText = BRAND.owner ? `¡Hola, ${BRAND.owner}! 👋` : '¡Hola! 👋';
+
+            let hoy = 0, semana = 0, ventasMes = 0, cobrar = 0, conSaldo = 0;
+            const prox = [];
+            const m = now.getMonth(), y = now.getFullYear();
+            pedidos.forEach(p => {
+                const d = diasHasta(p.fechaEntrega);
+                if (pedidoActivo(p)) {
+                    if (d === 0) hoy++;
+                    if (d !== null && d >= 0 && d <= 7) semana++;
+                    if (p.fechaEntrega) prox.push(p);
+                    const s = Math.max(0, (p.total || 0) - (p.pagado || 0));
+                    if (s > 0) { cobrar += s; conSaldo++; }
+                }
+                const cre = new Date(p.creado || 0);
+                if (cre.getMonth() === m && cre.getFullYear() === y) ventasMes += (p.total || 0);
+            });
+
+            document.getElementById('stat-hoy').innerText = hoy;
+            document.getElementById('stat-hoy-sub').innerText = hoy > 0 ? `${hoy} por entregar` : 'Sin entregas hoy';
+            document.getElementById('stat-semana').innerText = semana;
+            document.getElementById('stat-mes').innerText = moneyCompact(ventasMes);
+
+            const sc = document.getElementById('side-cobrar'); if (sc) sc.innerText = money(cobrar).replace('.00', '');
+            const scs = document.getElementById('side-cobrar-sub'); if (scs) scs.innerText = `${conSaldo} pedido(s) con saldo`;
+
+            // Próximas entregas
+            prox.sort((a, b) => a.fechaEntrega < b.fechaEntrega ? -1 : 1);
+            const ent = document.getElementById('dash-entregas');
+            if (!prox.length) {
+                ent.innerHTML = `<div class="empty-hint">Sin entregas próximas. Guarda un pedido en la agenda.</div>`;
+            } else {
+                ent.innerHTML = prox.slice(0, 4).map(p => {
+                    const saldo = Math.max(0, (p.total || 0) - (p.pagado || 0));
+                    const d = diasHasta(p.fechaEntrega);
+                    let cuando = fmtFecha(p.fechaEntrega);
+                    if (d === 0) cuando = 'Hoy'; else if (d === 1) cuando = 'Mañana'; else if (d > 1 && d <= 7) cuando = `En ${d} días`; else if (d < 0) cuando = 'Atrasado';
+                    const sub = [p.sabor, p.tamano].filter(Boolean).join(' · ') || 'Pastel';
+                    return `<div class="dash-row"><div class="dash-row-ic">🎂</div><div class="dash-row-main"><div class="dash-row-name">${esc(p.cliente)}</div><div class="dash-row-sub">${esc(sub)} · ${cuando}</div></div><div class="dash-row-right"><div class="dash-row-price">${money(p.total)}</div><div class="dash-tag ${saldo > 0 ? 't-debe' : 't-ok'}">${saldo > 0 ? 'Debe ' + money(saldo) : 'Pagado'}</div></div></div>`;
+                }).join('');
+            }
+
+            // Recetas favoritas
+            const grad = ['stat-green', 'stat-purple', 'stat-coral'];
+            const emo = ['🍫', '🍋', '🫐', '🍓', '🎂'];
+            const rc = document.getElementById('dash-recetas');
+            let cards = recetas.slice(0, 3).map((r, i) =>
+                `<div class="reci-card" onclick="usarRecetaDesdeInicio('${r.id}')"><div class="reci-top ${grad[i % 3]}">${emo[i % emo.length]}</div><div class="reci-body"><div class="reci-name">${esc(r.nombre)}</div><div class="reci-sub">${esc(r.tamanoBase || '')}</div></div></div>`
+            ).join('');
+            cards += `<div class="reci-card reci-add" onclick="switchTab('cotizador')"><span data-icon="plus"></span>Nueva receta</div>`;
+            rc.innerHTML = cards;
+            renderIcons(document.getElementById('section-inicio'));
         }
 
         /* ===================== INVENTARIO ===================== */
@@ -1797,10 +2032,11 @@
             document.getElementById('kpi-cobrar').innerText = money(porCobrar);
             document.getElementById('kpi-activos').innerText = activos;
 
-            // Badge en la pestaña
-            const badge = document.getElementById('tab-pedidos-badge');
-            badge.innerText = activos;
-            badge.classList.toggle('hidden', activos === 0);
+            // Badge en el menú lateral y la barra inferior
+            document.querySelectorAll('.pedidos-badge').forEach(badge => {
+                badge.innerText = activos;
+                badge.classList.toggle('hidden', activos === 0);
+            });
 
             // Filtrar
             const q = (document.getElementById('ped-buscar').value || '').toLowerCase().trim();
