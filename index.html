@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#929D7C">
+    <meta name="theme-color" content="#EF7C8E">
     <title>Pastelia · Cotizador profesional de pasteles</title>
     <!-- PWA: instalable en el celular con el logo como ícono -->
     <link rel="manifest" href="manifest.webmanifest">
@@ -16,41 +16,42 @@
     <!-- Fuentes como mejora progresiva: si no hay internet, se usan las de respaldo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* =========================================================
            SISTEMA DE DISEÑO · Pastelia  (100% offline)
            ========================================================= */
         :root {
-            --sage:        #929D7C;
-            --sage-600:    #808B6B;
-            --sage-700:    #6E7A5A;
-            --sage-050:    #F2F4EC;
-            --sage-100:    #E6EADC;
+            /* Acento coral (los nombres --sage-* se conservan; su valor ahora es coral) */
+            --sage:        #EF7C8E;
+            --sage-600:    #E7677D;
+            --sage-700:    #CF5168;
+            --sage-050:    #FBEEF1;
+            --sage-100:    #F7D9E0;
 
-            --gold:        #C4A15E;
-            --gold-soft:   #F7F0E0;
+            --gold:        #C78A3B;
+            --gold-soft:   #FFE9C7;
 
-            --cream:       #FBF9F5;
+            --cream:       #FAF3EC;
             --card:        #FFFFFF;
-            --ink:         #3B3A34;
-            --ink-soft:    #6E6C63;
-            --ink-faint:   #A7A499;
-            --line:        #ECE9E1;
-            --line-strong: #DFDBD0;
+            --ink:         #4A342E;
+            --ink-soft:    #92756B;
+            --ink-faint:   #BFA99E;
+            --line:        #F0E4D8;
+            --line-strong: #E6D4C5;
 
-            --success:     #4E8A5B;
-            --success-bg:  #EAF3EC;
-            --danger:      #C25B4E;
+            --success:     #5E9C6B;
+            --success-bg:  #E9F2DF;
+            --danger:      #DB5A4E;
 
-            --shadow-sm:   0 1px 2px rgba(59,58,52,.05), 0 1px 3px rgba(59,58,52,.04);
-            --shadow-md:   0 4px 12px rgba(59,58,52,.06), 0 2px 4px rgba(59,58,52,.04);
-            --shadow-lg:   0 12px 32px rgba(59,58,52,.10), 0 4px 8px rgba(59,58,52,.05);
+            --shadow-sm:   0 1px 2px rgba(74,52,46,.05), 0 2px 6px rgba(74,52,46,.05);
+            --shadow-md:   0 6px 18px rgba(74,52,46,.08), 0 2px 6px rgba(74,52,46,.05);
+            --shadow-lg:   0 18px 44px rgba(74,52,46,.14), 0 6px 14px rgba(74,52,46,.07);
 
-            --radius:      16px;
-            --radius-sm:   10px;
-            --font-body:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-head:   'Playfair Display', Georgia, 'Times New Roman', serif;
+            --radius:      22px;
+            --radius-sm:   14px;
+            --font-body:   'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-head:   'Fredoka', 'Nunito', system-ui, sans-serif;
         }
 
         * { box-sizing: border-box; }
@@ -66,7 +67,7 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
-        h1, h2, h3, .brand-font { font-family: var(--font-head); color: var(--sage); margin: 0; }
+        h1, h2, h3, .brand-font { font-family: var(--font-head); color: var(--ink); margin: 0; font-weight: 600; letter-spacing: -.01em; }
         p { margin: 0; }
         button { font-family: inherit; cursor: pointer; }
         input, textarea, select { font-family: inherit; }
@@ -996,7 +997,7 @@
             return `
         <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo">
             <defs><linearGradient id="lg-${uid}" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#9AA484"/><stop offset="1" stop-color="#6E7A5A"/>
+                <stop offset="0" stop-color="#EF7C8E"/><stop offset="1" stop-color="#FFB08A"/>
             </linearGradient></defs>
             <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#lg-${uid})"/>
             <rect x="17" y="38" width="30" height="11" rx="3.5" fill="#FFFFFF"/>
