@@ -113,6 +113,21 @@
             .bnav-badge { position: absolute; top: 2px; left: 50%; margin-left: 6px; background: var(--sage); color: #fff; font-size: 9px; font-weight: 800; min-width: 15px; height: 15px; padding: 0 4px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; }
         }
 
+        /* Barra de precio fija (móvil, solo en Cotizar) */
+        #mobile-pricebar { display: none; }
+        @media (max-width: 899px) {
+            body.pricebar-on #mobile-pricebar {
+                display: flex; align-items: center; justify-content: space-between; gap: 12px;
+                position: fixed; left: 0; right: 0; bottom: calc(60px + env(safe-area-inset-bottom, 0px)); z-index: 28;
+                background: rgba(255,255,255,.97); backdrop-filter: saturate(160%) blur(10px); -webkit-backdrop-filter: saturate(160%) blur(10px);
+                border-top: 1px solid var(--line); box-shadow: 0 -8px 20px rgba(74,52,46,.10); padding: 10px 16px;
+            }
+            body.pricebar-on main { padding-bottom: 92px; }
+            .mpb-label { display: block; font-size: 11px; font-weight: 700; color: var(--ink-soft); }
+            .mpb-val { font-family: var(--font-head); font-size: 23px; font-weight: 700; color: var(--sage-700); line-height: 1.1; }
+            .mpb-btn { padding: 11px 20px; font-size: 14.5px; flex: none; }
+        }
+
         /* ---------- Inicio (dashboard) ---------- */
         .dash-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
         .dash-date { font-size: 13px; font-weight: 700; color: var(--ink-soft); }
@@ -239,7 +254,7 @@
             transition: border-color .18s, box-shadow .18s; outline: none;
         }
         .input::placeholder, .textarea::placeholder { color: var(--ink-faint); }
-        .input:focus, .textarea:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(146,157,124,.16); }
+        .input:focus, .textarea:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(239,124,142,.18); }
         .textarea { resize: vertical; min-height: 60px; }
         /* Campos de fecha: alinear a la izquierda como los demás (iOS Safari los centra) */
         input[type="date"].input { -webkit-appearance: none; appearance: none; text-align: left; min-height: 44px; }
@@ -319,7 +334,7 @@
             border: 1.5px solid var(--line-strong); border-radius: 9px; background: #fff; outline: none;
             transition: border-color .15s, box-shadow .15s, background .15s;
         }
-        .ing-qty:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(146,157,124,.16); }
+        .ing-qty:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(239,124,142,.18); }
         .ing-qty.is-filled { background: var(--success-bg); border-color: #B7D4BC; color: var(--success); }
         .ing-unit { font-size: 12px; color: var(--ink-faint); width: 34px; }
         .ing-cost { width: 74px; text-align: right; font-size: 14px; font-weight: 700; color: var(--sage-700); flex: none; }
@@ -377,19 +392,19 @@
         .btn-ghost:hover { color: var(--danger); }
         .btn-outline { background: #fff; border-color: var(--line-strong); color: var(--ink); }
         .btn-outline:hover { border-color: var(--sage); color: var(--sage-700); background: var(--sage-050); }
-        .link-add { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 0; color: var(--sage-700); font-size: 13px; font-weight: 600; padding: 4px 6px; border-radius: 8px; }
-        .link-add:hover { background: var(--sage-050); }
+        .link-add { display: inline-flex; align-items: center; gap: 6px; background: var(--sage-050); border: 0; color: var(--sage-700); font-size: 13px; font-weight: 700; padding: 8px 14px; border-radius: 999px; cursor: pointer; transition: background .15s; }
+        .link-add:hover { background: var(--sage-100); }
         .icon-btn { background: transparent; border: 0; color: var(--ink-faint); padding: 6px; border-radius: 8px; display: grid; place-items: center; transition: color .15s, background .15s; }
         .icon-btn:hover { color: var(--danger); background: #FBECEA; }
         .icon-btn .icon { font-size: 17px; }
 
         /* ---------- Inventario ---------- */
         .inv-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
-        .inv-cat { background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; margin-bottom: 20px; }
+        .inv-cat { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin-bottom: 18px; box-shadow: var(--shadow-sm); }
         .inv-cat:last-child { margin-bottom: 0; }
-        .inv-cat-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--line); }
-        .inv-cat-title { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 700; color: var(--sage-700); font-family: var(--font-head); }
-        .inv-cat-title .icon { font-size: 19px; color: var(--sage); }
+        .inv-cat-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--line); }
+        .inv-cat-title { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; color: var(--ink); font-family: var(--font-head); }
+        .inv-cat-title .icon { font-size: 18px; color: var(--sage); background: var(--sage-050); width: 34px; height: 34px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; }
         .inv-colhead { display: none; }
         @media (min-width: 640px) {
             .inv-colhead { display: grid; grid-template-columns: 2.6fr 1.1fr 1.1fr 1.4fr 40px; gap: 10px; padding: 0 4px 8px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint); }
@@ -399,7 +414,7 @@
         .inv-row .full { grid-column: 1 / -1; }
         @media (min-width: 640px) { .inv-row .full { grid-column: auto; } }
         .inv-input { width: 100%; padding: 8px 10px; font-size: 13.5px; border: 1px solid var(--line-strong); border-radius: 9px; background: #fff; outline: none; transition: border-color .15s, box-shadow .15s; }
-        .inv-input:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(146,157,124,.16); }
+        .inv-input:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(239,124,142,.18); }
         .inv-input.center { text-align: center; }
         .inv-price { position: relative; }
         .inv-price .peso { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--ink-faint); font-size: 13.5px; }
@@ -543,8 +558,8 @@
            ========================================================= */
         #formulario-print { display: none; }
         .fp-page {
-            --fp-line: #8E9A72; --fp-soft: #B9C0A0; --fp-ink: #4A4A42; --fp-cream: #F7F5EE;
-            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --fp-line: #E4A9B0; --fp-soft: #F0CDD3; --fp-ink: #4A342E; --fp-cream: #FAF3EC; --fp-title: #C9556B;
+            font-family: 'Nunito', system-ui, sans-serif;
             color: var(--fp-ink); background: #fff; box-sizing: border-box;
             width: 210mm; min-height: 297mm; padding: 9mm 12mm 0; margin: 0 auto; position: relative;
         }
@@ -552,10 +567,10 @@
         .fp-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 3mm; }
         .fp-logo { display: flex; flex-direction: column; align-items: flex-start; gap: 3mm; }
         .fp-logo svg { width: 24mm; height: 24mm; }
-        .fp-logo .fp-logo-name { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; letter-spacing: .3em; font-size: 15px; color: #5E6A45; }
+        .fp-logo .fp-logo-name { font-family: 'Fredoka', 'Nunito', sans-serif; font-weight: 700; letter-spacing: .3em; font-size: 15px; color: var(--fp-title); }
         .fp-head-r { text-align: right; }
-        .fp-title { font-size: 30px; font-weight: 700; color: #5E6A45; line-height: 1.05; letter-spacing: .01em; }
-        .fp-brand { font-family: 'Playfair Display', Georgia, serif; letter-spacing: .35em; color: var(--fp-soft); font-size: 13px; margin-top: 6px; }
+        .fp-title { font-size: 30px; font-weight: 700; color: var(--fp-title); line-height: 1.05; letter-spacing: .01em; }
+        .fp-brand { font-family: 'Fredoka', 'Nunito', sans-serif; letter-spacing: .35em; color: var(--fp-soft); font-size: 13px; margin-top: 6px; }
 
         .fp-k { font-weight: 700; letter-spacing: .02em; }
         .fp-line { font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--fp-soft); }
@@ -570,7 +585,7 @@
 
         .fp-right { display: flex; flex-direction: column; gap: 4mm; }
         .fp-box { border: 1.5px solid var(--fp-line); border-radius: 2px; padding: 8px 10px; }
-        .fp-box-title { font-size: 13px; font-weight: 700; text-align: center; color: #5E6A45; margin-bottom: 4px; }
+        .fp-box-title { font-size: 13px; font-weight: 700; text-align: center; color: var(--fp-title); margin-bottom: 4px; }
         .fp-imgbox { display: grid; grid-template-columns: 1.7fr 1fr; gap: 0; padding: 0; overflow: hidden; }
         .fp-imgbox-left { padding: 8px; border-right: 1.5px solid var(--fp-line); }
         .fp-imgbox-right { padding: 8px; }
@@ -589,9 +604,9 @@
         .fp-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1.5px solid var(--fp-line); border-radius: 2px; margin-top: 3mm; }
         .fp-3col-item { padding: 7px 10px; border-right: 1.5px solid var(--fp-line); min-height: 18mm; }
         .fp-3col-item:last-child { border-right: 0; }
-        .fp-col-title { font-size: 14px; font-weight: 700; text-align: center; color: #5E6A45; letter-spacing: .02em; }
+        .fp-col-title { font-size: 14px; font-weight: 700; text-align: center; color: var(--fp-title); letter-spacing: .02em; }
         .fp-col-title.center { border-bottom: 1.5px solid var(--fp-line); padding-bottom: 4px; margin-bottom: 4px; }
-        .fp-val { font-size: 13px; font-family: 'Inter', sans-serif; color: var(--fp-ink); margin-top: 6px; }
+        .fp-val { font-size: 13px; font-family: 'Nunito', sans-serif; color: var(--fp-ink); margin-top: 6px; }
 
         .fp-block { border: 1.5px solid var(--fp-line); border-top: 0; border-radius: 2px; padding: 8px 10px; }
         .fp-3col + .fp-block { border-top: 0; }
@@ -602,17 +617,17 @@
         .fp-pay { border: 1.5px solid var(--fp-line); border-top: 0; margin-bottom: 3mm; }
         .fp-pay-methods { display: flex; align-items: center; gap: 16px; padding: 8px 10px; font-size: 13px; font-weight: 700; border-bottom: 1.5px solid var(--fp-line); }
         .fp-pay-methods b { font-weight: 400; font-size: 15px; }
-        .fp-totals { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; }
-        .fp-totals th { font-family: 'Playfair Display', Georgia, serif; font-size: 13px; color: #5E6A45; padding: 6px; border-right: 1.5px solid var(--fp-line); text-align: center; }
+        .fp-totals { width: 100%; border-collapse: collapse; font-family: 'Nunito', sans-serif; }
+        .fp-totals th { font-family: 'Fredoka', 'Nunito', sans-serif; font-size: 13px; color: var(--fp-title); padding: 6px; border-right: 1.5px solid var(--fp-line); text-align: center; }
         .fp-totals td { font-size: 14px; font-weight: 600; padding: 10px 6px; border-right: 1.5px solid var(--fp-line); border-top: 1.5px solid var(--fp-line); text-align: center; }
         .fp-totals th:last-child, .fp-totals td:last-child { border-right: 0; }
-        .fp-totals td:last-child { font-weight: 800; color: #5E6A45; }
+        .fp-totals td:last-child { font-weight: 800; color: var(--fp-title); }
 
-        .fp-foot { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 3mm 0; font-family: 'Inter', sans-serif; }
-        .fp-foot-item { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; letter-spacing: .01em; color: #5E6A45; }
-        .fp-social { width: 20px; height: 20px; color: #5E6A45; }
+        .fp-foot { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 3mm 0; font-family: 'Nunito', sans-serif; }
+        .fp-foot-item { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; letter-spacing: .01em; color: var(--fp-title); }
+        .fp-social { width: 20px; height: 20px; color: var(--fp-title); }
         .fp-foot .fp-divider { height: 18px; }
-        .fp-thanks { margin: 4mm -12mm 0; background: #5E6A45; color: #fff; text-align: center; padding: 7px 6px; font-size: 15px; letter-spacing: .08em; }
+        .fp-thanks { margin: 4mm -12mm 0; background: var(--fp-title); color: #fff; text-align: center; padding: 7px 6px; font-size: 15px; letter-spacing: .08em; }
 
         @media print {
             @page { size: A4 portrait; margin: 0; }
@@ -1007,6 +1022,15 @@
         </section>
 
             </main>
+
+            <!-- ===== Barra de precio fija (móvil, al cotizar) ===== -->
+            <div id="mobile-pricebar">
+                <div class="mpb-info">
+                    <span class="mpb-label">Total al cliente</span>
+                    <span class="mpb-val" id="mpb-total">$0.00</span>
+                </div>
+                <button class="btn btn-primary mpb-btn" onclick="guardarPedidoAgenda()"><span data-icon="calendar-plus"></span> Guardar</button>
+            </div>
 
             <!-- ===== Barra inferior (móvil) ===== -->
             <nav class="bottom-nav">
@@ -1518,6 +1542,7 @@
             // Estado activo en menú lateral y barra inferior
             document.querySelectorAll('.nav-item, .bnav-item').forEach(el =>
                 el.classList.toggle('is-active', el.getAttribute('data-tab') === tabId));
+            document.body.classList.toggle('pricebar-on', tabId === 'cotizador');
             if (tabId === 'inicio') { renderInicio(); }
             if (tabId === 'cotizador') { renderizarCotizador(); calcularTotales(); }
             if (tabId === 'pedidos') { renderPedidos(); }
@@ -1753,6 +1778,7 @@
             document.getElementById('res-ganancia-libre').innerText = '+' + money(gananciaLibre);
             document.getElementById('res-extras').innerText = money(extrasT);
             document.getElementById('res-total-cliente').innerText = money(totalCliente);
+            const mpb = document.getElementById('mpb-total'); if (mpb) mpb.innerText = money(totalCliente);
             actualizarPillMargen(margenVal);
         }
 
