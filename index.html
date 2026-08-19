@@ -554,6 +554,100 @@
         }
 
         /* =========================================================
+           REDISEÑO — Inicio, sidebar y navegación (estilo maqueta)
+           ========================================================= */
+        :root {
+            --peach:#ffb08a; --green:#e9f2df; --green-t:#7f9663; --lilac:#efe6f7; --lilac-t:#9179b8;
+            --sky:#d9edf2; --pink:#f7d9e0; --tan:#ffe1c9;
+        }
+        body { background: #efe7dd; }
+        .fk { font-family: var(--font-head); }
+
+        /* Sidebar */
+        .sidebar { width: 256px; padding: 24px 18px; }
+        .sb-top { display:flex; align-items:center; gap:12px; padding:0 6px 22px; }
+        .sb-logo { width:46px; height:46px; border-radius:16px; background:linear-gradient(135deg,#ffc7a8,var(--sage)); display:grid; place-items:center; font-size:24px; flex:none; }
+        .sb-name { font-family:var(--font-head); font-weight:600; font-size:19px; line-height:1; color:var(--ink); }
+        .sb-sub { font-size:11px; font-weight:800; color:var(--ink-faint); }
+        .sb-cta { width:100%; background:var(--sage); color:#fff; border:0; border-radius:18px; padding:14px 16px; display:flex; align-items:center; justify-content:center; gap:10px; font-family:var(--font-head); font-weight:600; font-size:15px; box-shadow:0 12px 22px -12px rgba(239,124,142,.7); margin-bottom:18px; cursor:pointer; }
+        .sb-cta:hover { background:var(--sage-600); }
+        .sb-nav { display:flex; flex-direction:column; gap:6px; }
+        .sbnav { display:flex; align-items:center; gap:12px; padding:12px 16px; border:0; background:transparent; border-radius:16px; font-family:inherit; font-weight:800; font-size:14px; color:rgba(74,52,46,.55); cursor:pointer; text-align:left; transition:background .15s,color .15s; }
+        .sbnav .em { font-size:18px; }
+        .sbnav:hover { background:var(--cream); }
+        .sbnav.is-active { background:#fbeef1; color:var(--sage); }
+        .sbnav .nav-badge { margin-left:auto; }
+        .sb-box { margin-top:auto; background:var(--cream); border-radius:18px; padding:16px; }
+        .sb-box .l { font-size:12px; font-weight:800; color:var(--ink-soft); }
+        .sb-box .v { font-family:var(--font-head); font-weight:600; font-size:26px; color:var(--ink); }
+        .sb-box .s { font-size:11px; font-weight:700; color:var(--ink-faint); }
+        .sb-user { display:flex; align-items:center; gap:10px; padding:16px 6px 0; }
+        .sb-user .av { width:36px; height:36px; border-radius:12px; background:var(--lilac); display:grid; place-items:center; font-size:16px; }
+        .sb-user .n { font-weight:800; font-size:13px; color:var(--ink); }
+        .sb-user .r { font-size:11px; color:var(--ink-faint); font-weight:700; }
+
+        /* Inicio dashboard */
+        .home-top { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom:24px; flex-wrap:wrap; }
+        .home-greet { font-size:13px; font-weight:800; color:var(--ink-soft); }
+        .home-hi { font-family:var(--font-head); font-weight:600; font-size:32px; line-height:1.1; margin:2px 0 0; }
+        .home-search { background:var(--cream); border:0; border-radius:14px; padding:11px 16px; font-weight:700; font-size:13px; color:var(--ink); font-family:inherit; outline:none; min-width:230px; }
+        .home-search::placeholder { color:var(--ink-soft); }
+        .hstats { display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:16px; margin-bottom:16px; }
+        .hstat { border-radius:24px; padding:22px; }
+        .hstat-hero { background:linear-gradient(135deg,var(--sage),var(--peach)); color:#fff; display:flex; align-items:center; justify-content:space-between; box-shadow:0 18px 32px -16px rgba(239,124,142,.6); }
+        .hstat-hero .lab { font-size:14px; font-weight:800; opacity:.92; }
+        .hstat-hero .num { font-family:var(--font-head); font-weight:600; font-size:60px; line-height:1.05; }
+        .hstat-hero .nxt { font-size:13px; font-weight:800; opacity:.92; }
+        .hstat-hero .emo { font-size:66px; filter:drop-shadow(0 10px 12px rgba(74,52,46,.25)); }
+        .hstat .ic { font-size:28px; }
+        .hstat .num2 { font-family:var(--font-head); font-weight:600; font-size:34px; margin-top:8px; line-height:1.1; }
+        .hstat .lab2 { font-size:13px; font-weight:800; }
+        .hstat-green { background:var(--green); } .hstat-green .lab2 { color:var(--green-t); }
+        .hstat-lilac { background:var(--lilac); } .hstat-lilac .lab2 { color:var(--lilac-t); }
+        .hqa { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:26px; }
+        .hqa .qa { border:0; text-align:left; border-radius:20px; padding:20px; box-shadow:0 10px 22px -16px rgba(74,52,46,.5); background:#fff; font-family:inherit; cursor:pointer; transition:transform .12s; }
+        .hqa .qa:hover { transform:translateY(-2px); }
+        .hqa .qa.pri { background:var(--sage); color:#fff; box-shadow:0 14px 24px -14px rgba(239,124,142,.7); }
+        .hqa .qa .em { font-size:26px; } .hqa .qa .t { font-family:var(--font-head); font-weight:600; font-size:16px; margin-top:8px; }
+        .h2col { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+        .h-sec-h { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; }
+        .h-sec-h .t { font-family:var(--font-head); font-weight:600; font-size:19px; }
+        .h-sec-h .a { font-size:13px; font-weight:800; color:var(--sage); cursor:pointer; background:none; border:0; font-family:inherit; }
+        .hlist { display:flex; flex-direction:column; gap:12px; }
+        .hrow { background:#fff; border-radius:18px; padding:14px 16px; display:flex; align-items:center; gap:14px; box-shadow:0 8px 20px -16px rgba(74,52,46,.4); }
+        .hava { width:44px; height:44px; border-radius:14px; display:grid; place-items:center; font-size:22px; flex:none; }
+        .hrow .nm { font-weight:800; font-size:15px; } .hrow .mt { font-size:12px; color:var(--ink-soft); font-weight:700; }
+        .hrow .pr { font-family:var(--font-head); font-weight:600; font-size:16px; text-align:right; }
+        .hbadge { font-size:10px; font-weight:800; border-radius:20px; padding:2px 8px; display:inline-block; }
+        .hrecis { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .hreci { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 8px 20px -16px rgba(74,52,46,.4); cursor:pointer; transition:transform .12s; }
+        .hreci:hover { transform:translateY(-2px); }
+        .hreci .cap { height:70px; display:grid; place-items:center; font-size:30px; }
+        .hreci .bd { padding:10px 14px; } .hreci .nm { font-weight:800; font-size:14px; } .hreci .mt { font-size:11px; color:var(--ink-soft); font-weight:700; }
+        .hreci-add { border:2px dashed #f2c4ce; border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--sage); font-weight:800; font-size:13px; cursor:pointer; min-height:116px; background:transparent; font-family:inherit; }
+
+        /* Recetas (pantalla propia) */
+        .rec-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+        @media (max-width:899px){ .rec-grid { grid-template-columns:1fr 1fr; } }
+
+        /* FAB móvil */
+        #nav-fab { display:none; }
+
+        @media (max-width:899px){
+            .hstats { grid-template-columns:1fr 1fr; }
+            .hstat-hero { grid-column:1/-1; }
+            .hqa { grid-template-columns:repeat(4,1fr); gap:10px; }
+            .hqa .qa { padding:14px; } .hqa .qa .t { font-size:13px; }
+            .h2col { grid-template-columns:1fr; }
+            .home-search { display:none; }
+            .home-hi { font-size:26px; }
+            .hstat-hero .num { font-size:52px; }
+            .bottom-nav { position:relative; }
+            #nav-fab { display:grid; place-items:center; position:absolute; left:50%; top:-22px; transform:translateX(-50%); width:58px; height:58px; border-radius:20px; background:var(--sage); font-size:30px; color:#fff; border:0; box-shadow:0 12px 22px -8px rgba(239,124,142,.8); cursor:pointer; }
+            .bnav-spacer { flex:1; }
+        }
+
+        /* =========================================================
            FORMULARIO IMPRIMIBLE (PDF)
            ========================================================= */
         #formulario-print { display: none; }
@@ -646,28 +740,29 @@
     <div class="shell">
         <!-- ===== Menú lateral (escritorio) ===== -->
         <aside class="sidebar">
-            <div class="sidebar-brand">
-                <div class="brand-mark" id="brand-mark"></div>
-                <div class="brand-text">
-                    <div class="brand-name" id="brand-name">PASTELIA</div>
-                    <div class="brand-tag" id="brand-tag">Cotizador profesional</div>
+            <div class="sb-top">
+                <div class="sb-logo">🧁</div>
+                <div>
+                    <div class="sb-name" id="brand-name">Pastelia</div>
+                    <div class="sb-sub" id="brand-tag">Cake Studio</div>
                 </div>
             </div>
-            <button class="btn btn-primary sidebar-cta" data-tab="cotizador" onclick="switchTab('cotizador')">
-                <span data-icon="plus"></span> Nueva cotización
-            </button>
-            <nav class="sidebar-nav">
-                <button class="nav-item" data-tab="inicio" onclick="switchTab('inicio')"><span data-icon="home"></span> Inicio</button>
-                <button class="nav-item" data-tab="pedidos" onclick="switchTab('pedidos')"><span data-icon="calendar"></span> Agenda de pedidos <span class="nav-badge pedidos-badge hidden">0</span></button>
-                <button class="nav-item" data-tab="cotizador" onclick="switchTab('cotizador')"><span data-icon="calculator"></span> Cotizar</button>
-                <button class="nav-item" data-tab="inventario" onclick="switchTab('inventario')"><span data-icon="shopping-bag"></span> Mis precios</button>
+            <button class="sb-cta" data-tab="cotizador" onclick="switchTab('cotizador')">＋ Nueva cotización</button>
+            <nav class="sb-nav">
+                <button class="sbnav is-active" data-tab="inicio" onclick="switchTab('inicio')"><span class="em">🏠</span> Inicio</button>
+                <button class="sbnav" data-tab="pedidos" onclick="switchTab('pedidos')"><span class="em">📅</span> Agenda de pedidos <span class="nav-badge pedidos-badge hidden">0</span></button>
+                <button class="sbnav" data-tab="cotizador" onclick="switchTab('cotizador')"><span class="em">✏️</span> Cotizar</button>
+                <button class="sbnav" data-tab="recetas" onclick="switchTab('recetas')"><span class="em">🍰</span> Recetas</button>
+                <button class="sbnav" data-tab="inventario" onclick="switchTab('inventario')"><span class="em">🧾</span> Mis precios</button>
             </nav>
-            <div class="sidebar-foot">
-                <div class="sidebar-cobrar">
-                    <span class="sc-label">Por cobrar 💰</span>
-                    <span class="sc-val" id="side-cobrar">$0</span>
-                    <span class="sc-sub" id="side-cobrar-sub">0 pedidos con saldo</span>
-                </div>
+            <div class="sb-box">
+                <div class="l">Por cobrar 💰</div>
+                <div class="v" id="side-cobrar">$0</div>
+                <div class="s" id="side-cobrar-sub">0 pedidos con saldo</div>
+            </div>
+            <div class="sb-user">
+                <div class="av">👩‍🍳</div>
+                <div><div class="n" id="side-owner">Tu pastelería</div><div class="r">Dueña</div></div>
             </div>
         </aside>
 
@@ -682,53 +777,64 @@
 
         <!-- ================= INICIO (DASHBOARD) ================= -->
         <section id="section-inicio">
-            <div class="dash-head">
+            <div class="home-top">
                 <div>
-                    <div class="dash-date" id="dash-date">Hoy</div>
-                    <h2 class="dash-hi" id="dash-hi">¡Hola! 👋</h2>
+                    <div class="home-greet" id="dash-date">Hoy</div>
+                    <h2 class="home-hi" id="dash-hi">¡Hola! 👋</h2>
                 </div>
-                <div class="dash-search">
-                    <span data-icon="search"></span>
-                    <input type="text" placeholder="Buscar pedido, cliente..." onkeydown="dashBuscar(event)">
+                <input class="home-search" type="text" placeholder="🔍 Buscar pedido, cliente…" onkeydown="dashBuscar(event)">
+            </div>
+
+            <div class="hstats">
+                <div class="hstat hstat-hero">
+                    <div>
+                        <div class="lab">Entregas de hoy</div>
+                        <div class="num" id="stat-hoy">0</div>
+                        <div class="nxt" id="stat-hoy-sub">Sin entregas hoy</div>
+                    </div>
+                    <div class="emo">🎂</div>
+                </div>
+                <div class="hstat hstat-green">
+                    <div class="ic">📦</div>
+                    <div class="num2" id="stat-semana">0</div>
+                    <div class="lab2">Pedidos esta semana</div>
+                </div>
+                <div class="hstat hstat-lilac">
+                    <div class="ic">💵</div>
+                    <div class="num2" id="stat-mes">$0</div>
+                    <div class="lab2">Ingresos del mes</div>
                 </div>
             </div>
 
-            <div class="stat-row">
-                <div class="stat-card stat-coral">
-                    <div class="stat-label">Entregas de hoy</div>
-                    <div class="stat-num" id="stat-hoy">0</div>
-                    <div class="stat-sub" id="stat-hoy-sub">Sin entregas hoy</div>
-                    <div class="stat-emoji">🎂</div>
-                </div>
-                <div class="stat-card stat-green">
-                    <div class="stat-ic">📦</div>
-                    <div class="stat-num" id="stat-semana">0</div>
-                    <div class="stat-label">Pedidos esta semana</div>
-                </div>
-                <div class="stat-card stat-purple">
-                    <div class="stat-ic">💵</div>
-                    <div class="stat-num" id="stat-mes">$0</div>
-                    <div class="stat-label">Ventas del mes</div>
-                </div>
+            <div class="hqa">
+                <button class="qa pri" data-tab="cotizador" onclick="switchTab('cotizador')"><div class="em">✏️</div><div class="t">Cotizar</div></button>
+                <button class="qa" data-tab="pedidos" onclick="switchTab('pedidos')"><div class="em">📅</div><div class="t">Agenda</div></button>
+                <button class="qa" data-tab="recetas" onclick="switchTab('recetas')"><div class="em">🍰</div><div class="t">Recetas</div></button>
+                <button class="qa" data-tab="inventario" onclick="switchTab('inventario')"><div class="em">🧾</div><div class="t">Precios</div></button>
             </div>
 
-            <div class="quick-row">
-                <button class="quick-card quick-coral" onclick="switchTab('cotizador')"><span data-icon="calculator"></span><span>Cotizar</span></button>
-                <button class="quick-card" onclick="switchTab('pedidos')"><span data-icon="calendar"></span><span>Agenda</span></button>
-                <button class="quick-card" onclick="irARecetas()"><span data-icon="book"></span><span>Recetas</span></button>
-                <button class="quick-card" onclick="switchTab('inventario')"><span data-icon="shopping-bag"></span><span>Mis precios</span></button>
+            <div class="h2col">
+                <div>
+                    <div class="h-sec-h"><div class="t">Entregas de hoy</div><button class="a" onclick="switchTab('pedidos')">Ver agenda</button></div>
+                    <div class="hlist" id="dash-entregas"></div>
+                </div>
+                <div>
+                    <div class="h-sec-h"><div class="t">Recetas favoritas</div></div>
+                    <div class="hrecis" id="dash-recetas"></div>
+                </div>
             </div>
+        </section>
 
-            <div class="dash-cols">
-                <div class="dash-panel">
-                    <div class="dash-panel-head"><h3>Próximas entregas</h3><button class="mini-link" onclick="switchTab('pedidos')">Ver agenda</button></div>
-                    <div id="dash-entregas"></div>
+        <!-- ================= RECETAS ================= -->
+        <section id="section-recetas" class="hidden">
+            <div class="home-top">
+                <div>
+                    <h2 class="home-hi">🍰 Mis recetas</h2>
+                    <div class="home-greet" style="margin-top:4px;">Guarda una receta al cotizar y reutilízala — el costo se recalcula con tus precios.</div>
                 </div>
-                <div class="dash-panel">
-                    <div class="dash-panel-head"><h3>Recetas favoritas</h3></div>
-                    <div class="reci-grid" id="dash-recetas"></div>
-                </div>
+                <button class="sb-cta" style="width:auto;margin:0;" data-tab="cotizador" onclick="switchTab('cotizador')">＋ Nueva receta</button>
             </div>
+            <div class="rec-grid" id="recetas-grid"></div>
         </section>
 
         <!-- ================= COTIZADOR ================= -->
@@ -1035,9 +1141,11 @@
             <!-- ===== Barra inferior (móvil) ===== -->
             <nav class="bottom-nav">
                 <button class="bnav-item" data-tab="inicio" onclick="switchTab('inicio')"><span data-icon="home"></span><span>Inicio</span></button>
-                <button class="bnav-item" data-tab="cotizador" onclick="switchTab('cotizador')"><span data-icon="calculator"></span><span>Cotizar</span></button>
                 <button class="bnav-item" data-tab="pedidos" onclick="switchTab('pedidos')"><span data-icon="calendar"></span><span>Agenda</span><span class="bnav-badge pedidos-badge hidden">0</span></button>
+                <span class="bnav-spacer"></span>
+                <button class="bnav-item" data-tab="recetas" onclick="switchTab('recetas')"><span data-icon="book"></span><span>Recetas</span></button>
                 <button class="bnav-item" data-tab="inventario" onclick="switchTab('inventario')"><span data-icon="shopping-bag"></span><span>Precios</span></button>
+                <button id="nav-fab" data-tab="cotizador" onclick="switchTab('cotizador')">＋</button>
             </nav>
         </div><!-- /main-area -->
     </div><!-- /shell -->
@@ -1288,16 +1396,18 @@
         /* ===================== INIT ===================== */
         function aplicarMarca() {
             const nombreUp = BRAND.nombre.toUpperCase();
-            document.getElementById('brand-mark').innerHTML = logoSvg('head');
-            document.getElementById('brand-name').innerText = nombreUp;
-            document.getElementById('brand-tag').innerText = BRAND.tagline;
-            const bmM = document.getElementById('brand-mark-m'); if (bmM) bmM.innerHTML = logoSvg('mob');
-            const bnM = document.getElementById('brand-name-m'); if (bnM) bnM.innerText = nombreUp;
+            const setTx = (id, tx) => { const el = document.getElementById(id); if (el) el.innerText = tx; };
+            const setHt = (id, ht) => { const el = document.getElementById(id); if (el) el.innerHTML = ht; };
+            setHt('brand-mark', logoSvg('head'));
+            setTx('brand-name', BRAND.nombre);
+            setTx('side-owner', BRAND.owner || 'Tu pastelería');
+            setHt('brand-mark-m', logoSvg('mob'));
+            setTx('brand-name-m', BRAND.nombre);
             document.title = BRAND.nombre + ' · ' + BRAND.tagline;
-            document.getElementById('fp-logo').innerHTML = logoSvg('pdf') + '<div class="fp-logo-name">' + esc(nombreUp) + '</div>';
-            document.getElementById('fp-brand').innerText = nombreUp;
-            document.getElementById('fp-tel-brand').innerText = BRAND.telefono;
-            document.getElementById('fp-ig-brand').innerText = BRAND.instagram;
+            setHt('fp-logo', logoSvg('pdf') + '<div class="fp-logo-name">' + esc(nombreUp) + '</div>');
+            setTx('fp-brand', nombreUp);
+            setTx('fp-tel-brand', BRAND.telefono);
+            setTx('fp-ig-brand', BRAND.instagram);
         }
 
         function initApp() {
@@ -1530,6 +1640,7 @@
             inicio: 'section-inicio',
             cotizador: 'section-cotizador',
             pedidos: 'section-pedidos',
+            recetas: 'section-recetas',
             inventario: 'section-inventario'
         };
         function switchTab(tabId) {
@@ -1540,18 +1651,29 @@
             const target = document.getElementById(SECCIONES[tabId]);
             if (target) target.classList.remove('hidden');
             // Estado activo en menú lateral y barra inferior
-            document.querySelectorAll('.nav-item, .bnav-item').forEach(el =>
+            document.querySelectorAll('.sbnav, .bnav-item').forEach(el =>
                 el.classList.toggle('is-active', el.getAttribute('data-tab') === tabId));
             document.body.classList.toggle('pricebar-on', tabId === 'cotizador');
             if (tabId === 'inicio') { renderInicio(); }
             if (tabId === 'cotizador') { renderizarCotizador(); calcularTotales(); }
             if (tabId === 'pedidos') { renderPedidos(); }
+            if (tabId === 'recetas') { renderRecetasScreen(); }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function irARecetas() {
-            switchTab('inventario');
-            setTimeout(() => { const el = document.getElementById('recetas-inv'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 120);
+        function irARecetas() { switchTab('recetas'); }
+
+        const RECI_GRAD = ['linear-gradient(135deg,#ffd9c0,#ef7c8e)','linear-gradient(135deg,#e9f2df,#bfe3d0)','linear-gradient(135deg,#efe6f7,#d9cbf0)','linear-gradient(135deg,#fde6c9,#f4c95b)','linear-gradient(135deg,#d9edf2,#a9d3de)'];
+        const RECI_EMO = ['🍫','🍋','🫐','🍓','🍑','🎂'];
+
+        function renderRecetasScreen() {
+            const g = document.getElementById('recetas-grid');
+            if (!g) return;
+            let html = recetas.map((r, i) =>
+                `<div class="hreci" onclick="usarRecetaDesdeInicio('${r.id}')"><div class="cap" style="height:100px;background:${RECI_GRAD[i % RECI_GRAD.length]}">${RECI_EMO[i % RECI_EMO.length]}</div><div class="bd" style="padding:14px 16px"><div class="nm" style="font-size:15px">${esc(r.nombre)}</div><div class="mt">${Object.keys(r.usos || {}).length} ingredientes${r.tamanoBase ? ' · ' + esc(r.tamanoBase) : ''}</div></div></div>`
+            ).join('');
+            html += `<div class="hreci-add" style="min-height:150px" onclick="switchTab('cotizador')"><div style="font-size:30px">＋</div>Nueva receta</div>`;
+            g.innerHTML = html;
         }
 
         function usarRecetaDesdeInicio(id) {
@@ -1595,40 +1717,48 @@
                 if (cre.getMonth() === m && cre.getFullYear() === y) ventasMes += (p.total || 0);
             });
 
+            prox.sort((a, b) => a.fechaEntrega < b.fechaEntrega ? -1 : 1);
+
             document.getElementById('stat-hoy').innerText = hoy;
-            document.getElementById('stat-hoy-sub').innerText = hoy > 0 ? `${hoy} por entregar` : 'Sin entregas hoy';
+            let heroSub = 'Sin entregas hoy';
+            if (hoy > 0) { const primero = prox.find(p => diasHasta(p.fechaEntrega) === 0); heroSub = primero ? `Próxima · ${esc(primero.cliente)}` : `${hoy} por entregar`; }
+            else if (prox.length) { const d = diasHasta(prox[0].fechaEntrega); heroSub = `Siguiente: ${d === 1 ? 'mañana' : fmtFecha(prox[0].fechaEntrega)}`; }
+            document.getElementById('stat-hoy-sub').innerText = heroSub;
             document.getElementById('stat-semana').innerText = semana;
             document.getElementById('stat-mes').innerText = moneyCompact(ventasMes);
 
             const sc = document.getElementById('side-cobrar'); if (sc) sc.innerText = money(cobrar).replace('.00', '');
             const scs = document.getElementById('side-cobrar-sub'); if (scs) scs.innerText = `${conSaldo} pedido(s) con saldo`;
 
-            // Próximas entregas
-            prox.sort((a, b) => a.fechaEntrega < b.fechaEntrega ? -1 : 1);
+            // Próximas entregas (filas con avatar)
+            const avaBg = ['var(--tan)', 'var(--lilac)', 'var(--pink)', 'var(--sky)'];
+            const avaEmo = ['🎂', '🧁', '🍰', '🎂'];
             const ent = document.getElementById('dash-entregas');
             if (!prox.length) {
                 ent.innerHTML = `<div class="empty-hint">Sin entregas próximas. Guarda un pedido en la agenda.</div>`;
             } else {
-                ent.innerHTML = prox.slice(0, 4).map(p => {
+                ent.innerHTML = prox.slice(0, 4).map((p, i) => {
                     const saldo = Math.max(0, (p.total || 0) - (p.pagado || 0));
                     const d = diasHasta(p.fechaEntrega);
                     let cuando = fmtFecha(p.fechaEntrega);
                     if (d === 0) cuando = 'Hoy'; else if (d === 1) cuando = 'Mañana'; else if (d > 1 && d <= 7) cuando = `En ${d} días`; else if (d < 0) cuando = 'Atrasado';
-                    const sub = [p.sabor, p.tamano].filter(Boolean).join(' · ') || 'Pastel';
-                    return `<div class="dash-row"><div class="dash-row-ic">🎂</div><div class="dash-row-main"><div class="dash-row-name">${esc(p.cliente)}</div><div class="dash-row-sub">${esc(sub)} · ${cuando}</div></div><div class="dash-row-right"><div class="dash-row-price">${money(p.total)}</div><div class="dash-tag ${saldo > 0 ? 't-debe' : 't-ok'}">${saldo > 0 ? 'Debe ' + money(saldo) : 'Pagado'}</div></div></div>`;
+                    let badge = saldo <= 0
+                        ? `<span class="hbadge" style="color:var(--green-t);background:var(--green)">Pagado</span>`
+                        : (p.estado === 'Apartado'
+                            ? `<span class="hbadge" style="color:#c78a3b;background:#fbeecb">Apartado</span>`
+                            : `<span class="hbadge" style="color:#b25b52;background:#ffe1e1">Debe ${money(saldo)}</span>`);
+                    const sub = [p.sabor, cuando].filter(Boolean).join(' · ');
+                    return `<div class="hrow"><div class="hava" style="background:${avaBg[i % 4]}">${avaEmo[i % 4]}</div><div style="flex:1;min-width:0"><div class="nm">${esc(p.cliente)}</div><div class="mt">${esc(sub)}</div></div><div style="text-align:right"><div class="pr">${money(p.total)}</div>${badge}</div></div>`;
                 }).join('');
             }
 
             // Recetas favoritas
-            const grad = ['stat-green', 'stat-purple', 'stat-coral'];
-            const emo = ['🍫', '🍋', '🫐', '🍓', '🎂'];
             const rc = document.getElementById('dash-recetas');
             let cards = recetas.slice(0, 3).map((r, i) =>
-                `<div class="reci-card" onclick="usarRecetaDesdeInicio('${r.id}')"><div class="reci-top ${grad[i % 3]}">${emo[i % emo.length]}</div><div class="reci-body"><div class="reci-name">${esc(r.nombre)}</div><div class="reci-sub">${esc(r.tamanoBase || '')}</div></div></div>`
+                `<div class="hreci" onclick="usarRecetaDesdeInicio('${r.id}')"><div class="cap" style="background:${RECI_GRAD[i % RECI_GRAD.length]}">${RECI_EMO[i % RECI_EMO.length]}</div><div class="bd"><div class="nm">${esc(r.nombre)}</div><div class="mt">${esc(r.tamanoBase || 'Receta')}</div></div></div>`
             ).join('');
-            cards += `<div class="reci-card reci-add" onclick="switchTab('cotizador')"><span data-icon="plus"></span>Nueva receta</div>`;
+            cards += `<div class="hreci-add" onclick="switchTab('cotizador')"><div style="font-size:26px">＋</div>Nueva</div>`;
             rc.innerHTML = cards;
-            renderIcons(document.getElementById('section-inicio'));
         }
 
         /* ===================== INVENTARIO ===================== */
