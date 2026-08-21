@@ -647,6 +647,61 @@
             .bnav-spacer { flex:1; }
         }
 
+        /* Panel oscuro "Resumen en vivo" (Cotizar) */
+        .panel-dark { background:linear-gradient(150deg,#4a342e,#6d4a3e) !important; color:#fff; border:0 !important; border-radius:24px !important; box-shadow:0 18px 34px -18px rgba(74,52,46,.7) !important; }
+        .panel-dark .summary-title { color:#fff; border-bottom:1px solid rgba(255,255,255,.16); }
+        .panel-dark .sum-row { color:rgba(255,255,255,.82); }
+        .panel-dark .sum-row .v { color:#fff; }
+        .panel-dark .sum-row.total { color:#fff; border-top:1px solid rgba(255,255,255,.16); }
+        .panel-dark .sum-row.total .v { color:#fff; }
+        .panel-dark .sum-row small { color:rgba(255,255,255,.55) !important; }
+        .panel-dark .client-note { color:rgba(255,255,255,.6); border-top:1px dashed rgba(255,255,255,.2); }
+        .panel-dark .margin-box { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); }
+        .panel-dark .margin-head .lbl { color:#ffd9c0; }
+        .panel-dark .margin-val { color:#fff; }
+        .panel-dark .margin-hint { color:rgba(255,255,255,.6); }
+        .panel-dark input[type=range] { background:rgba(255,255,255,.2); }
+        .panel-dark .price-box { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); }
+        .panel-dark .price-box .lbl { color:rgba(255,255,255,.72); }
+        .panel-dark .price-big { color:#fff; }
+        .panel-dark .gain-row { border-top:1px dashed rgba(255,255,255,.18); }
+        .panel-dark .envio-input { background:rgba(255,255,255,.14); border-color:transparent; }
+        .panel-dark .envio-input span { color:rgba(255,255,255,.7); }
+        .panel-dark .envio-input input { color:#fff; }
+        .panel-dark .field-label { color:rgba(255,255,255,.72); }
+        .panel-dark .toggle-chip { background:rgba(255,255,255,.12); border-color:transparent; color:#fff; }
+        .panel-dark .toggle-chip:hover { background:rgba(255,255,255,.2); }
+        .panel-dark .toggle-chip.is-active { background:var(--sage); border-color:var(--sage); color:#fff; }
+        .panel-dark .mini-link { color:#ffd9c0; }
+        .panel-dark .btn-outline { background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.2); color:#fff; }
+        .panel-dark .btn-outline:hover { background:rgba(255,255,255,.2); border-color:rgba(255,255,255,.3); color:#fff; }
+        .panel-dark .btn-ghost { color:rgba(255,255,255,.6); }
+        .panel-dark .btn-ghost:hover { color:#fff; }
+
+        /* Chips de paso (Cotizar) */
+        .steps-row { display:flex; gap:10px; margin-bottom:16px; }
+        .step-chip { flex:1; text-align:center; border-radius:14px; padding:10px 4px; font-size:12px; font-weight:800; background:#fff; color:rgba(74,52,46,.45); box-shadow:0 8px 20px -16px rgba(74,52,46,.4); }
+        .step-chip.on { background:var(--sage); color:#fff; }
+        .step-chip.on2 { background:var(--tan); color:#b25b52; }
+
+        /* Encabezado de tarjeta con emoji (Cotizar) */
+        .card-emh { font-family:var(--font-head); font-weight:600; font-size:18px; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+
+        /* KPIs de colores (Agenda) */
+        .hstats-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:18px; }
+        .hstats-4 .hstat { padding:18px; }
+        .hstat-tan { background:var(--tan); } .hstat-tan .lab2 { color:#b25b52; }
+        .hstat-pink { background:var(--pink); } .hstat-pink .lab2 { color:#b25b52; }
+        @media (max-width:899px){ .hstats-4 { grid-template-columns:1fr 1fr; } }
+
+        /* Botones de acción de pedido (Agenda) */
+        .pact { display:inline-flex; align-items:center; gap:5px; border:0; border-radius:12px; padding:9px 13px; font-family:inherit; font-size:12.5px; font-weight:800; cursor:pointer; }
+        .pact-wa { background:#25d366; color:#fff; }
+        .pact-soft { background:var(--cream); color:var(--ink); }
+        .pact-cobrar { background:var(--sage); color:#fff; }
+        .pact:hover { filter:brightness(.96); }
+        .ped-ava { width:52px; height:52px; border-radius:16px; display:grid; place-items:center; font-size:26px; flex:none; }
+
         /* =========================================================
            FORMULARIO IMPRIMIBLE (PDF)
            ========================================================= */
@@ -843,13 +898,18 @@
 
                 <!-- Columna izquierda -->
                 <div>
+                    <h2 class="home-hi" style="font-size:28px;margin-bottom:2px;">Nueva cotización</h2>
+                    <p class="section-sub" style="margin-bottom:16px;">Llena los pasos y el precio se calcula solo ✨</p>
+                    <div class="steps-row">
+                        <div class="step-chip on">1 Cliente</div>
+                        <div class="step-chip on2">2 Pastel</div>
+                        <div class="step-chip">3 Costeo</div>
+                        <div class="step-chip">$ Total</div>
+                    </div>
                     <div class="card card-pad" style="margin-bottom:24px;">
-                        <h2 class="section-title">Costeo del pastel</h2>
-                        <p class="section-sub">Anota las cantidades exactas que usarás para este pedido.</p>
-
                         <!-- Paso 1: Datos del cliente y evento -->
-                        <div class="subcard" style="margin-top:22px;">
-                            <div class="step-label"><span class="step-num">1</span> Datos del cliente y evento</div>
+                        <div class="subcard" style="margin-top:0;">
+                            <div class="card-emh">👤 Cliente y evento</div>
 
                             <div class="grid-2">
                                 <div class="field" style="margin-bottom:0;">
@@ -905,7 +965,7 @@
 
                         <!-- Paso 2: Detalles del pastel -->
                         <div class="subcard" style="margin-top:16px;">
-                            <div class="step-label"><span class="step-num">2</span> Detalles del pastel</div>
+                            <div class="card-emh">🎂 El pastel</div>
 
                             <div class="field recipe-box">
                                 <label class="field-label">Receta base · cotización exprés</label>
@@ -982,7 +1042,7 @@
                         </div>
 
                         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;">
-                            <div class="step-label" style="margin-bottom:0;"><span class="step-num">3</span> Ingredientes y cantidades usadas</div>
+                            <div class="card-emh" style="margin-bottom:0;">🧮 Ingredientes y cantidades</div>
                             <button type="button" class="link-add" onclick="guardarReceta()"><span data-icon="save"></span> Guardar como receta</button>
                         </div>
                         <div id="costeo-categorias-container" style="margin-top:12px;"></div>
@@ -991,8 +1051,8 @@
 
                 <!-- Columna derecha: resumen -->
                 <div>
-                    <div class="card card-pad summary">
-                        <div class="summary-title"><span data-icon="receipt" style="color:var(--sage);"></span> Resumen financiero</div>
+                    <div class="card card-pad summary panel-dark">
+                        <div class="summary-title">💰 Resumen en vivo</div>
 
                         <div class="sum-row"><span>Costo materiales</span><span class="v" id="res-mat">$0.00</span></div>
                         <div class="sum-row"><span>Costos operativos / fijos</span><span class="v" id="res-op">$0.00</span></div>
@@ -1061,19 +1121,17 @@
 
         <!-- ================= PEDIDOS (AGENDA) ================= -->
         <section id="section-pedidos" class="hidden">
-            <div class="card card-pad">
-                <div class="inv-header">
-                    <div>
-                        <h2 class="section-title">Agenda de pedidos</h2>
-                        <p class="section-sub" style="max-width:520px;">Tus pedidos, entregas y saldos en un solo lugar. Guarda una cotización con "Guardar en agenda".</p>
-                    </div>
+            <div>
+                <div class="home-top">
+                    <div><h2 class="home-hi">📅 Agenda de pedidos</h2></div>
+                    <button class="sb-cta" style="width:auto;margin:0;" data-tab="cotizador" onclick="switchTab('cotizador')">＋ Nuevo pedido</button>
                 </div>
 
-                <div class="kpi-row">
-                    <div class="kpi"><span class="kpi-label">Entregas hoy</span><span class="kpi-val" id="kpi-hoy">0</span></div>
-                    <div class="kpi"><span class="kpi-label">Esta semana</span><span class="kpi-val" id="kpi-semana">0</span></div>
-                    <div class="kpi kpi-accent"><span class="kpi-label">Por cobrar</span><span class="kpi-val" id="kpi-cobrar">$0</span></div>
-                    <div class="kpi"><span class="kpi-label">Pedidos activos</span><span class="kpi-val" id="kpi-activos">0</span></div>
+                <div class="hstats-4">
+                    <div class="hstat hstat-tan"><div class="num2" id="kpi-hoy">0</div><div class="lab2">Entregas hoy</div></div>
+                    <div class="hstat hstat-green"><div class="num2" id="kpi-semana">0</div><div class="lab2">Esta semana</div></div>
+                    <div class="hstat hstat-pink"><div class="num2" id="kpi-cobrar">$0</div><div class="lab2">Por cobrar</div></div>
+                    <div class="hstat hstat-lilac"><div class="num2" id="kpi-activos">0</div><div class="lab2">Activos</div></div>
                 </div>
 
                 <div class="ped-toolbar">
@@ -1095,15 +1153,13 @@
 
         <!-- ================= INVENTARIO ================= -->
         <section id="section-inventario" class="hidden">
-            <div class="card card-pad">
-                <div class="inv-header">
+            <div>
+                <div class="home-top">
                     <div>
-                        <h2 class="section-title">Mis precios / Compras</h2>
-                        <p class="section-sub" style="max-width:520px;">Configura cuánto te cuesta comprar tus insumos. El cotizador usa esto para calcular el costo por gramo o pieza.</p>
+                        <h2 class="home-hi">🧾 Mis precios</h2>
+                        <div class="home-greet" style="margin-top:4px;max-width:560px;">Cuánto te cuesta comprar — la app calcula el costo por gramo o pieza y lo usa al cotizar.</div>
                     </div>
-                    <button class="btn btn-primary" onclick="guardarInventario(this)">
-                        <span data-icon="save"></span> Guardar inventario
-                    </button>
+                    <button class="sb-cta" style="width:auto;margin:0;background:var(--sage);" onclick="guardarInventario(this)">💾 Guardar inventario</button>
                 </div>
                 <div id="inventario-container"></div>
 
@@ -2214,7 +2270,7 @@
                 return;
             }
 
-            lista.innerHTML = items.map(p => {
+            lista.innerHTML = items.map((p, idx) => {
                 const saldo = Math.max(0, (p.total || 0) - (p.pagado || 0));
                 const d = diasHasta(p.fechaEntrega);
                 const late = pedidoActivo(p) && d !== null && d < 0;
@@ -2234,22 +2290,28 @@
                 const saldoHtml = saldo > 0
                     ? `<div class="ped-saldo debe">Debe ${money(saldo)}</div>`
                     : `<div class="ped-saldo pagado">Pagado ✓</div>`;
+                const avaBg = ['var(--tan)', 'var(--lilac)', 'var(--pink)', 'var(--sky)'][idx % 4];
+                const avaEmo = ['🎂', '🧁', '🍰', '🎂'][idx % 4];
+                const cobrarBtn = saldo > 0 ? `<button class="pact pact-cobrar" onclick="registrarPago('${p.id}')">💵 Cobrar</button>` : '';
                 return `
                 <div class="ped-card ${ESTADO_CLASS[p.estado] || ''} ${late ? 'is-late' : ''}">
-                    <div class="ped-main">
-                        <div class="ped-cliente">${esc(p.cliente)} <span class="ped-folio">${esc(p.folio)}</span></div>
-                        <div class="ped-detalle">${esc(detalle || 'Pastel')}</div>
-                        <div class="ped-detalle ped-entrega ${entregaCls}"><span data-icon="calendar"></span> ${esc(entregaTxt)}</div>
-                    </div>
-                    <div class="ped-money">
-                        <div class="ped-total">${money(p.total)}</div>
-                        ${saldoHtml}
+                    <div style="display:flex;align-items:center;gap:14px;grid-column:1/-1;">
+                        <div class="ped-ava" style="background:${avaBg}">${avaEmo}</div>
+                        <div class="ped-main" style="flex:1;min-width:0;">
+                            <div class="ped-cliente">${esc(p.cliente)} <span class="ped-folio">${esc(p.folio)}</span></div>
+                            <div class="ped-detalle">${esc(detalle || 'Pastel')}</div>
+                            <div class="ped-detalle ped-entrega ${entregaCls}"><span data-icon="calendar"></span> ${esc(entregaTxt)}</div>
+                        </div>
+                        <div class="ped-money">
+                            <div class="ped-total">${money(p.total)}</div>
+                            ${saldoHtml}
+                        </div>
                     </div>
                     <div class="ped-actions">
                         <select class="ped-estado-sel" onchange="cambiarEstadoPedido('${p.id}', this.value)">${opts}</select>
-                        <button class="ped-mini-btn" onclick="registrarPago('${p.id}')"><span data-icon="wallet"></span> Registrar pago</button>
-                        <button class="ped-mini-btn" onclick="copiarResumenPedido('${p.id}')"><span data-icon="send"></span> WhatsApp</button>
-                        <button class="ped-mini-btn danger" onclick="eliminarPedido('${p.id}')"><span data-icon="trash-2"></span></button>
+                        <button class="pact pact-wa" onclick="copiarResumenPedido('${p.id}')">💬 WhatsApp</button>
+                        ${cobrarBtn}
+                        <button class="ped-mini-btn danger" onclick="eliminarPedido('${p.id}')" style="margin-left:auto;"><span data-icon="trash-2"></span></button>
                     </div>
                 </div>`;
             }).join('');
